@@ -1,0 +1,121 @@
+<!--#include file="../_header.html"-->
+    <title>添加-结构体类型字段属性</title>
+<!--#include file="../_header-end.html"-->
+
+<div ng-controller="pageCtrl">
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -------------------------------------------->
+
+                <!-- BEGIN SAMPLE FORM widget-->
+                <div class="widget">
+
+                    <div class="widget-body form">
+                    <!-- BEGIN FORM-->
+                    <form action="#" class="form-horizontal">
+
+                    <!--属性-->
+                    <div class="control-group">
+                        <label class="control-label">属性</label>
+
+                        <div class="controls">
+                            <input type="text" class="span6 ng-readonly" />
+
+                            <!--<select class="span6 " ng-model="flistItem" ng-change="flistChange(flistItem)">-->
+                                <!--<option value="">Select...</option>-->
+                                <!--<option ng-repeat="flist in structureFlist.models" value="{{flist}}" ng-selected="flist.name==selFlist">-->
+                                    <!--{{flist.name}}  |  {{flist.category}}-->
+                                <!--</option>-->
+                            <!--</select>-->
+                        </div>
+                    </div>
+                    <!--类型-->
+                    <div class="control-group">
+                        <label class="control-label">类别</label>
+                        <div class="controls">
+                            <input type="radio" value="SIMPLE" name="type" checked="true" ng-click="check_type('SIMPLE')"/>简单类型
+                            <input type="radio" value="LIST" name="type" ng-click="check_type('LIST')"/>LIST类型
+                            <input type="radio" value="STRUCTURE" name="type" ng-click="check_type('STRUCTURE')"/>复杂类型
+                        </div>
+                    </div>
+
+                    <div class="control-group J_Show_type J_SIMPLE">
+                        <label class="control-label">类型</label>
+                        <div class="controls">
+                            SIMPLE
+                        </div>
+                    </div>
+                    <div class="control-group J_Show_type J_LIST" style="display:none">
+                        <label class="control-label">类型</label>
+                        <div class="controls">
+                           LIST
+                        </div>
+                    </div>
+                    <div class="control-group J_Show_type J_STRUCTURE" style="display:none">
+                        <label class="control-label">类型</label>
+                        <div class="controls">
+                          STRUCTURE
+                        </div>
+                    </div>
+
+                    <!--类别-->
+                    <!--<div class="control-group">-->
+                        <!--<label class="control-label">类别</label>-->
+                        <!--<div class="controls">-->
+                            <!--<input type="text" class="span6 ng-readonly" ng-model="flistData.typeName" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--是否必须-->
+                    <div class="control-group">
+                        <label class="control-label">是否必须</label>
+                        <div class="controls">
+                            <select class="span6 J_isMust">
+                                <option value="1">必须</option>
+                                <option value="0">非必须</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--位置-->
+                    <div class="control-group">
+                        <label class="control-label">位置</label>
+                        <div class="controls">
+                            <input type="text" class="span6" ng-model="flistData.position" />
+                        </div>
+                    </div>
+                    <!--描述-->
+                    <div class="control-group">
+                        <label class="control-label">描述</label>
+                        <div class="controls">
+                            <input type="text" class="span6" ng-model="flistData.desc" />
+                        </div>
+                    </div>
+                    <!--别名-->
+                    <div class="control-group">
+                        <label class="control-label">别名</label>
+                        <div class="controls">
+                            <input type="text" class="span6" ng-model="flistData.otherName"/>
+                        </div>
+                    </div>
+
+                    </form>
+                    <!-- END FORM-->
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM widget-->
+
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+        <!--END:BODY-->
+    </div>
+    <!-- END PAGE CONTENT-->
+</div>
+
+    <!--#include file="../_footer.html"-->
+    <script src="controller/service.js"></script>
+    <script src="controller/add-page-new.js"></script>
+
+</body>
+</html>

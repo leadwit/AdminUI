@@ -1,0 +1,65 @@
+<!--#include file="../_header.html"-->
+    <title>ngJqwidgets Grid 添加演示</title>
+<!--#include file="../_header-end.html"-->
+
+<div ng-controller="pageCtrl">
+
+    <!-- BEGIN PAGE HEADER-->
+    <div class="row-fluid">
+        <div class="span10">
+            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+            <h3 class="page-title">
+                ngJqwidgets Grid 添加演示
+                <small>ngJqwidgets Grid Add DEMO</small>
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+                </li>
+                <li>
+                    <a href="#">Grid</a> <span class="divider">&nbsp;</span>
+                </li>
+                <li><a href="#">AddRow</a><span class="divider-last">&nbsp;</span></li>
+            </ul>
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <!-- END PAGE HEADER-->
+
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -------------------------------------------->
+                <div class="content-body">
+
+                    <table class="angular-grid" id="grid1" ng-grid-jqwidgets="'pagesize':'20','width':'98%'">
+                        <thead><tr><td>
+                            <button id="plus" class="btn" ng-click="plus()"><i class="icon-plus"></i> 添加</button>
+                            <button id="remove" class="btn"><i class="icon-remove"></i> 删除</button>
+                        </td></tr></thead>
+                        <tbody>
+                            <tr>
+                                <th data-fieldName="id" data-fieldType="int" data-width="20%">ID</th>
+                                <th data-fieldName="name" data-fieldType="string" data-width="80%">名称</th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+        <!--END:BODY-->
+    </div>
+    <!-- END PAGE CONTENT-->
+
+</div>
+
+    <!--#include file="../_footer.html"-->
+    <script src="../../../framework-jqwidgets/directive-grid.js"></script>   <!--可以在这里单独调用，也可以在容器中统一调用-->
+    <script src="controller/ng-grid-jqwidgets-add.js"></script>
+
+</body>
+</html>

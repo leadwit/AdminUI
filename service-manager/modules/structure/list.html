@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin Dashboard Page</title>
+    <link href="../../../framework/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../framework/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../../../framework/component/uniform/uniform.default.min.css" rel="stylesheet">
+    <link href="../../../framework/style/font-myriadpro.css" rel="stylesheet">
+    <link href="../../../framework/style/font-awesome.css" rel="stylesheet">
+
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style-responsive.css" rel="stylesheet">
+    <link href="../../css/theme-default.css" rel="stylesheet" id="style_color"><!--此id用于动态切换模板-->
+    <link href="../../css/app.less" rel="stylesheet/less"><!--使用JS实时编译LESS文件，严重影响页面的加载速度。在生产环境中，应先将LESS编译为CSS，并修改这里。-->
+
+    <!--这里加载JS是为了能预先处理好界面的效果，避免出现界面“闪烁”的情况-->
+    <script src="../../../framework/jquery/jquery-1.8.3.min.js"></script>
+    <script src="../../../framework/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="../../../framework/less/es5-shim.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/less/less-1.4.2.min.js"></script><!--如果需要在IE6、7、8中使用，请先在引入less.js前先引入es5-shim.js-->
+    <!-- ie8 fixes -->
+    <!--[if lt IE 9]>
+    <script src="../../../framework/ie/excanvas.min.js"></script>
+    <script src="../../../framework/ie/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/component/uniform/jquery.uniform.min.js"></script>
+
+    <script src="../../script/app.js"></script>
+    <script src="../../script/ui-compile.js"></script>
+<title>结构体类型列表</title>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="fixed-top" ng-controller="mainCtrl">
+    <div id="frame-main-content">
+        <div class="container-fluid">
+
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            结构体类型列表
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">数据类型管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">结构体类型列表</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a id="structure-add" class="btn btn-large tip-bottom" title="添加" href="add.shtml"><i class="icon-plus"></i></a>
+            <a id="structure-refresh" onclick="location.reload()"  class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="structureList">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+            <div class="content-body">
+
+                <table class="angular-grid" id="grid1"
+                       ng-grid-jqwidgets="'url':'{{gridUrl}}','pagesize':'20','width':'98%'">
+                    <thead><tr><td>
+                        <div class="span3">
+                            结构体名称:<input name="name" class='jqx-input J_search' type='text' ng-keydown="search2($event)" style="width:100%" />
+                            <button class="toolbar-search btn btn-mini J_bt_search" ng-click="search()"><i class="icon-search"></i> 搜索</button>
+                        </div>
+                    </td></tr></thead>
+                    <tbody>
+                    <tr>
+                        <th data-fieldName="indexNum" data-fieldType="int" data-width="10%" data-template="">序号</th>
+                        <th data-fieldName="name" data-fieldType="string" data-width="15%">名称</th>
+                        <th data-fieldName="status" data-fieldType="string" data-width="10%"
+                            data-renderer="function statusRenderer(row, column, value){return value=='1' ? '有效':'无效';}">状态</th>
+                        <th data-fieldName="description" data-fieldType="string" data-width="20%">描述</th>
+                        <th data-fieldName="createTime" data-fieldType="string" data-width="15%">创建时间</th>
+                        <th data-fieldName="createBy" data-fieldType="string" data-width="10%">创建人</th>
+                        <th data-fieldName="synProduct" data-fieldType="string" data-width="10%"  data-renderer="
+                        function synProductRenderer(row, column, value){
+                            if(value=='1'){	return '同步';
+                                }else if(value=='0'){
+                                return '不同步';
+                                }else if(value=='2'){
+                                return '已同步';
+                              };
+                        }
+                     ">同步状态</th>
+                        <th data-fieldName="id" data-fieldType="string" data-width="10%" data-renderer="
+                            function idRenderer(row, column, value)
+                            {
+                                 return  '<a  href=\'detail.shtml?id='+value+'\'>详情</a>';
+                            }
+                    ">详情</th>
+                    </tr>
+                    </tbody>
+                    <tfoot><tr><td>
+                        <button class="btn J_bt_cp" ng-click="copy()"><i class="icon-road"></i> 复制</button>
+                        <button class="btn J_bt_up" ng-click="update()"><i class="icon-edit"></i> 修改</button>
+                        <button id="remove" class="btn"  ng-click="delete()"><i class="icon-remove"></i> 删除</button>
+                    </td></tr></tfoot>
+                </table>
+
+            </div>
+
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+
+         </div>
+</div>
+<div ng-controller="endCtrlForIframe"></div>
+
+     <!-- BEGIN JAVASCRIPTS -->
+     <!-- Load javascripts at bottom, this will reduce page load time -->
+     <script src="../../../framework/jquery/jquery.tmpl.min.js"></script>
+     <script src="../../../framework/jquery/jquery.query.min.js"></script>
+     <script src="../../../framework/angular/angular.min.js"></script>
+     <script src="../../../framework/angular/angular-resource.min.js"></script>
+     <script src="../../../framework/angular/angular-route.min.js"></script>
+     <script src="../../../framework/LAB/LAB.min.js"></script>
+
+     <script src="../../../framework/framework.js"></script>
+     <script src="../../../framework/main-controller.js"></script>
+
+     <!--<script src="../../../framework-kendoui/ng-grid-kendoui/directive.js"></script>-->         <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!--<script src="../../../framework-jqwidgets/ng-grid-jqwidgets/directive.js"></script>-->     <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!-- END JAVASCRIPTS -->
+
+ <!-- END BODY -->
+<script src="controller/service.js"></script>
+<script src="controller/list-controller.js"></script>
+<script src="../../../framework-jqwidgets/directive-grid.js"></script>   <!--可以在这里单独调用，也可以在容器中统一调用-->
+
+</body>
+</html>

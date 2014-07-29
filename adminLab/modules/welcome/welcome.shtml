@@ -1,0 +1,79 @@
+<!--#include file="../_header.html"-->
+    <title>WELCOME</title>
+    <!--这里可以调用其他的CSS等操作-->
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid nav">
+    <div class="span12">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            演示
+            <small>演示最基础页面</small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">演示</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">欢迎页</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="pageCtrl">
+    <div class="row-fluid">
+        <div class="span12">
+
+            <!-- 内容区域 -->
+            <div class="widget">
+                <div class="widget-title">
+                    <h4><i class="icon-reorder"></i>内容</h4>
+                           <span class="tools">
+                           <a href="javascript:;" class="icon-chevron-down"></a>
+                           <a href="javascript:;" class="icon-remove"></a>
+                           </span>
+                </div>
+                <div class="widget-body">
+                    <div class="icon-style-list">
+
+
+                        <h1>welcome!</h1>
+                        <button class="btn btn-large btn-primary J_broadcastToGlobal" type="button">向全局广播</button>
+                        <button class="btn btn-large btn-primary J_broadcast" type="button">向框架页面内广播</button>
+
+                        <div class="alert J_broadcast_msg" style="display:none">
+                            <button class="close" data-dismiss="alert">×</button>
+                        </div>
+
+                        <div style="margin-top:50px;">
+                            <button class="btn btn-large btn-primary J_openWindow" type="button">打开窗口</button>
+                        </div>
+
+
+
+
+                        <div style="height:600px;"></div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 内容区域 END -->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+
+    <!--#include file="../_footer.html"-->
+        <!--可以在结尾处理在调用其他scripts脚本或其他操作-->
+        <script src="controller/script.js"></script>
+</body>
+</html>

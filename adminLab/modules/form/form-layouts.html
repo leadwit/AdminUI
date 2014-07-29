@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin Dashboard Page</title>
+    <link href="../../../framework/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../framework/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../../../framework/component/uniform/uniform.default.min.css" rel="stylesheet">
+    <link href="../../../framework/style/font-myriadpro.css" rel="stylesheet">
+    <link href="../../../framework/style/font-awesome.css" rel="stylesheet">
+
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style-responsive.css" rel="stylesheet">
+    <link href="../../css/theme-default.css" rel="stylesheet" id="style_color"><!--此id用于动态切换模板-->
+    <link href="../../css/app.less" rel="stylesheet/less"><!--使用JS实时编译LESS文件，严重影响页面的加载速度。在生产环境中，应先将LESS编译为CSS，并修改这里。-->
+
+    <!--这里加载JS是为了能预先处理好界面的效果，避免出现界面“闪烁”的情况-->
+    <script src="../../../framework/jquery/jquery-1.8.3.min.js"></script>
+    <script src="../../../framework/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="../../../framework/less/es5-shim.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/less/less-1.4.2.min.js"></script><!--如果需要在IE6、7、8中使用，请先在引入less.js前先引入es5-shim.js-->
+    <!-- ie8 fixes -->
+    <!--[if lt IE 9]>
+    <script src="../../../framework/ie/excanvas.min.js"></script>
+    <script src="../../../framework/ie/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/component/uniform/jquery.uniform.min.js"></script>
+
+    <script src="../../script/app.js"></script>
+    <script src="../../script/ui-compile.js"></script>
+    <title>WELCOME</title>
+    <!--这里可以调用其他的CSS等操作-->
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="fixed-top" ng-controller="mainCtrl">
+    <div id="frame-main-content">
+        <div class="container-fluid">
+
+
+        <!-- BEGIN PAGE HEADER-->
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                <h3 class="page-title">
+                    Form Layouts
+                    <small>simple form layouts</small>
+                </h3>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+                    </li>
+                    <li>
+                        <a href="#">Form Stuff</a> <span class="divider">&nbsp;</span>
+                    </li>
+                    <li><a href="#">Form Layouts</a><span class="divider-last">&nbsp;</span></li>
+                </ul>
+                <!-- END PAGE TITLE & BREADCRUMB-->
+            </div>
+        </div>
+        <!-- END PAGE HEADER-->
+
+        <!-- BEGIN PAGE CONTENT-->
+        <div id="page">
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <!-- 内容区域 -->
+                    <div class="widget">
+                        <div class="widget-title">
+                            <h4><i class="icon-reorder"></i>Form Layouts</h4>
+                                   <span class="tools">
+                                   <a href="javascript:;" class="icon-chevron-down"></a>
+                                   <a href="javascript:;" class="icon-remove"></a>
+                                   </span>
+                        </div>
+                        <div class="widget-body">
+                            <!-- BEGIN FORM-->
+                            <form action="#" class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label">Mini Input</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".input-mini" class="input-mini" />
+                                        <span class="help-inline">Some hint here</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Small Input</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".input-small" class="input-small" />
+                                        <span class="help-inline">Some hint here</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Meduam Input</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".input-medium" class="input-medium" />
+                                        <span class="help-inline">Some hint here</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Large Input</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".input-large" class="input-large" />
+                                        <span class="help-inline">Some hint here</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">xLarge Input</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".input-xlarge" class="input-xlarge" />
+                                        <span class="help-inline">Some hint here</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">xxLarge Input</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".input-xxlarge" class="input-xxlarge" />
+                                        <span class="help-inline">Some hint here</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Disabled Input</label>
+                                    <div class="controls">
+                                        <input class="medium" type="text" placeholder="Disabled input here..." disabled />
+                                        <span class="help-inline">Some hint here</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Readonly Input</label>
+                                    <div class="controls">
+                                        <input class="medium" readonly type="text" placeholder="Readonly input here..." disabled />
+                                        <span class="help-inline">Some hint here</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Small Dropdown</label>
+                                    <div class="controls">
+                                        <select class="input-small m-wrap" tabindex="1">
+                                            <option value="Category 1">Category 1</option>
+                                            <option value="Category 2">Category 2</option>
+                                            <option value="Category 3">Category 5</option>
+                                            <option value="Category 4">Category 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Medium Dropdown</label>
+                                    <div class="controls">
+                                        <select class="input-medium m-wrap" tabindex="1">
+                                            <option value="Category 1">Category 1</option>
+                                            <option value="Category 2">Category 2</option>
+                                            <option value="Category 3">Category 5</option>
+                                            <option value="Category 4">Category 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Large Dropdown</label>
+                                    <div class="controls">
+                                        <select class="input-large m-wrap" tabindex="1">
+                                            <option value="Category 1">Category 1</option>
+                                            <option value="Category 2">Category 2</option>
+                                            <option value="Category 3">Category 5</option>
+                                            <option value="Category 4">Category 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Radio Buttons</label>
+                                    <div class="controls">
+                                        <label class="radio">
+                                            <input type="radio" name="optionsRadios1" value="option1" />
+                                            Option 1
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="optionsRadios1" value="option2" checked />
+                                            Option 2
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="optionsRadios1" value="option2" />
+                                            Option 3
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Radio Buttons</label>
+                                    <div class="controls">
+                                        <label class="radio line">
+                                            <input type="radio" name="optionsRadios2" value="option1" />
+                                            Option 1
+                                        </label>
+                                        <label class="radio line">
+                                            <input type="radio" name="optionsRadios2" value="option2" checked />
+                                            Option 2
+                                        </label>
+                                        <label class="radio line">
+                                            <input type="radio" name="optionsRadios2" value="option2" />
+                                            Option 3
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Checkbox</label>
+                                    <div class="controls">
+                                        <label class="checkbox">
+                                            <input type="checkbox" value="" /> Checkbox 1
+                                        </label>
+                                        <label class="checkbox">
+                                            <input type="checkbox" value="" /> Checkbox 2
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Checkbox</label>
+                                    <div class="controls">
+                                        <label class="checkbox line">
+                                            <input type="checkbox" value="" /> Checkbox 1
+                                        </label>
+                                        <label class="checkbox line">
+                                            <input type="checkbox" value="" /> Checkbox 2
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Textarea</label>
+                                    <div class="controls">
+                                        <textarea class="input-medium" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Large Textarea</label>
+                                    <div class="controls">
+                                        <textarea class="input-large" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">xLarge Textarea</label>
+                                    <div class="controls">
+                                        <textarea class="input-xlarge" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">xxLarge Textarea</label>
+                                    <div class="controls">
+                                        <textarea class="input-xxlarge" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn blue"><i class="icon-ok"></i> Save</button>
+                                    <button type="button" class="btn"><i class="icon-remove"></i> Cancel</button>
+                                </div>
+                            </form>
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+
+                    <!-- 内容区域 END -->
+                </div>
+            </div>
+            <!--END:BODY-->
+        </div>
+        <!-- END PAGE CONTENT-->
+
+
+             </div>
+</div>
+<div ng-controller="endCtrlForIframe"></div>
+
+     <!-- BEGIN JAVASCRIPTS -->
+     <!-- Load javascripts at bottom, this will reduce page load time -->
+     <script src="../../../framework/jquery/jquery.tmpl.min.js"></script>
+     <script src="../../../framework/jquery/jquery.query.min.js"></script>
+     <script src="../../../framework/angular/angular.min.js"></script>
+     <script src="../../../framework/angular/angular-resource.min.js"></script>
+     <script src="../../../framework/angular/angular-route.min.js"></script>
+     <script src="../../../framework/LAB/LAB.min.js"></script>
+
+     <script src="../../../framework/framework.js"></script>
+     <script src="../../../framework/main-controller.js"></script>
+
+     <!--<script src="../../../framework-kendoui/ng-grid-kendoui/directive.js"></script>-->         <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!--<script src="../../../framework-jqwidgets/ng-grid-jqwidgets/directive.js"></script>-->     <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!-- END JAVASCRIPTS -->
+
+ <!-- END BODY -->
+    <!--可以在结尾处理在调用其他scripts脚本或其他操作-->
+</body>
+</html>

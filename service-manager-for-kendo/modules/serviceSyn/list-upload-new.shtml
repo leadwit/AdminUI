@@ -1,0 +1,534 @@
+<!--#include file="../_header.html"-->
+<title>导入数据</title>
+<link rel="stylesheet" href="upload/styles/jquery-ui.css" id="theme" />
+<link rel="stylesheet" href="upload/styles/jquery.fileupload-ui.css" />
+<!--#include file="../_header-end.html"-->
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            导入预校验
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="../welcome/welcome.shtml"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">服务管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="list.shtml">服务接口</a><span class="divider">&nbsp;</span></li>
+            <li><a href="#">导入预校验</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="后退" href="list.shtml"><i class="icon-chevron-left"></i></a>
+            <a onclick="location.reload()"  class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+    </div>
+</div>
+<div ng-controller="pageCtrl">
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -------------------------------------------->
+
+                <!-- BEGIN SAMPLE FORM widget-->
+                <div class="widget">
+
+                    <div class="widget-body form">
+                        <!-- BEGIN FORM-->
+                        <form name="form" method="post" action="../../../doc/api.do?method=preImp&impDataType=S"   enctype="multipart/form-data" novalidate class="form-horizontal">
+                            <div class="control-group" id="td_upload" >
+                                <label class="control-label">选择XML文件上传：</label>
+                                <div class="controls">
+                                    <!--upload------------------------------------------------------>
+                                    <div id="fileupload" style="padding-top: 5px; padding-left: 0px;" ng-controller="uploadCtrl">
+
+                                        <div style="float: left; margin-top: 10px;">
+                                            <div class="uploader uploader_m" style="width: 50px;margin-top:-25px; border-right:1px solid #999999; border-bottom-right-radius:9px;border-top-right-radius:9px;">
+                                                <div style="height: 4px"></div>
+                                                <input type="file" name="file" /><span style="margin-left: 12px">选择</span>
+                                            </div>
+                                        </div>
+                                        <div class="fileupload-content" style="float: left; border: 0px;">
+                                            <table class="files" style="margin: 0px; padding: 0px; margin-top: -15px;"></table>
+                                        </div>
+                                    </div>
+                                    <script id="template-upload" type="text/x-jquery-tmpl"
+                                            style="padding: 0px;">
+                                        <tr class="template-upload{{if error}} ui-state-error{{/if}}">
+                                            <td class="preview"></td>
+                                            <td class="name">${name}</td>
+                                            <!--td class="size">${sizef}</!--td--><!--文件大小-->
+                                            {{if error}}
+                                            <td class="error" colspan="2">错误:
+                                                {{if error === 'maxFileSize'}}File is too big
+                                                {{else error === 'minFileSize'}}File is too small
+                                                {{else error === 'acceptFileTypes'}}文件格式错误，请上传xml格式
+                                                {{else error === 'maxNumberOfFiles'}}只能上传一个文件
+                                                {{else}}${error}
+                                                {{/if}}
+                                            </td>
+                                            {{else}}
+                                            <td class="progress"><div></div></td>
+                                            <td class="start"><button>Start</button></td>
+                                            {{/if}}
+                                            <td class="cancel"><button>Cancel</button></td>
+                                        </tr>
+                                    </script>
+                                    <script id="template-download" type="text/x-jquery-tmpl">
+                                        <tr class="template-download{{if error}} ui-state-error{{/if}}">
+                                            {{if error}}
+                                            <td></td>
+                                            <td class="name">${name}</td>
+                                            <!--td class="size">${sizef}</!--td-->
+                                            <td class="error" colspan="2">错误:
+                                                {{if error === 1}}File exceeds upload_max_filesize (php.ini directive)
+                                                {{else error === 2}}File exceeds MAX_FILE_SIZE (HTML form directive)
+                                                {{else error === 3}}File was only partially uploaded
+                                                {{else error === 4}}No File was uploaded
+                                                {{else error === 5}}Missing a temporary folder
+                                                {{else error === 6}}Failed to write file to disk
+                                                {{else error === 7}}File upload stopped by extension
+                                                {{else error === 'maxFileSize'}}File is too big
+                                                {{else error === 'minFileSize'}}File is too small
+                                                {{else error === 'acceptFileTypes'}}文件格式错误，请上传xml格式
+                                                {{else error === 'maxNumberOfFiles'}}只能上传一个文件
+                                                {{else error === 'uploadedBytes'}}Uploaded bytes exceed file size
+                                                {{else error === 'emptyResult'}}Empty file upload result
+                                                {{else}}${error}
+                                                {{/if}}
+                                            </td>
+                                            {{else}}
+                                            <td class="preview">
+
+                                                <!--<input type="hidden" id="apiVo" name="apiVo" onchange='chang(${apiVo})' value="${apiVo}"  ng-model="project.apiVo"/>-->
+                                            </td>
+                                            <td class="name">
+                                                <span href="${url}"{{if thumbnail_url}} target="_blank"{{/if}}>${name}</span>
+                                            </td>
+                                            <!--td class="size">${sizef}</!--td-->`
+                                            <td colspan="2"></td>
+                                            {{/if}}
+                                            <td class="delete">
+                                                <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </script>
+                                    <!--&lt;!&ndash;upload end-------------------------------------------------------&ndash;&gt;-->
+                                </div>
+                            </div>
+
+                            <div class="control-group" id="structureInfoList"  style="display:none">
+                                <h3>结构体</h3>
+                                <table style=" width:100%" border="1" cellpadding="0" cellspacing="0"
+                                       id="structureInfoList-table" >
+                                    <thead>
+                                    <tr style=" text-align: center;  height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">
+                                        <td>
+                                            名称
+                                        </td>
+                                        <td>
+                                            类别
+                                        </td>
+                                        <td>
+                                            描述
+                                        </td>
+                                        <td>
+                                           操作说明
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <script id="structureInfoList-Template" type="text/x-jquery-tmpl">
+                                    <tr>
+                                        <td>
+                                            ${name}
+                                        </td>
+                                        <td>
+                                            ${category}
+                                        </td>
+                                        <td>
+                                            ${description}
+                                        </td>
+                                        <td>
+                                            ${compareDesc}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span  style=" height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">属性列表</span>
+                                            <table  style="text-align: center;width:100%" border="1" cellpadding="0" cellspacing="0">
+                                                <thead>
+                                                <tr style=" height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">
+                                                    <td>属性名称</td>
+                                                    <td>属性类别</td>
+                                                    <td>是否必须</td>
+                                                    <td>位置</td>
+                                                    <td>类型名称</td>
+                                                    <td>描述</td>
+                                                    <td>别名</td>
+                                                    <td>操作说明</td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {{each fields}}
+                                                <tr>
+                                                    <td> ${$value.fieldName}</td>
+                                                    <td>${$value.category}</td>
+                                                    <td> ${$value.required}</td>
+                                                    <td>${$value.position}</td>
+                                                    <td> ${$value.typeName}</td>
+                                                    <td>${$value.desc}</td>
+                                                    <td>${$value.otherName}</td>
+                                                    <td> ${$value.compareDesc}</td>
+                                                </tr>
+                                                {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </script>
+                            </div>
+                            <div class="control-group" id="listInfoList"  style="display:none">
+                                <h3>列表</h3>
+                                <table style=" width:100%" border="1" cellpadding="0" cellspacing="0"
+                                       id="listInfoList-table" >
+                                    <thead>
+                                    <tr style=" height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">
+                                        <td>
+                                            名称
+                                        </td>
+                                        <td>
+                                            类别
+                                        </td>
+                                        <td>
+                                            元素名称
+                                        </td>
+                                        <td>
+                                            元素类型
+                                        </td>
+                                        <td>
+                                            描述
+                                        </td>
+                                        <td>
+                                            操作说明
+                                        </td>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <script id="listInfoList-Template" type="text/x-jquery-tmpl">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            ${name}
+                                        </td>
+                                        <td>
+                                            ${category}
+                                        </td>
+                                        <td>
+                                            ${elementName}
+                                        </td>
+                                        <td>
+                                            ${elementCategory}
+                                        </td>
+                                        <td>
+                                            ${description}
+                                        </td>
+                                        <td>
+                                            ${compareDesc}
+                                        </td>
+                                    </tr>
+                                </script>
+                            </div>
+                            <div class="control-group" id="simpleFieldList"  style="display:none">
+                                <h3>简单属性</h3>
+                                <table style=" width:100%" border="1" cellpadding="0" cellspacing="0"
+                                       id="simpleFieldList-table" >
+                                    <thead>
+                                    <tr style=" height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">
+                                        <td>
+                                            属性名称
+                                        </td>
+                                        <td>
+                                            类型名称
+                                        </td>
+                                        <td>
+                                            类别
+                                        </td>
+                                        <td>
+                                            描述
+                                        </td>
+                                        <td>
+                                            操作说明
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <script id="simpleFieldList-Template" type="text/x-jquery-tmpl">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            ${fieldName}
+                                        </td>
+                                        <td>
+                                            ${typeName}
+                                        </td>
+                                        <td>
+                                            ${category}
+                                        </td>
+                                        <td>
+                                            ${desc}
+                                        </td>
+                                        <td>
+                                            ${compareDesc}
+                                        </td>
+                                    </tr>
+                                </script>
+                            </div>
+                            <div class="control-group" id="otherFieldList"  style="display:none">
+                                <h3>复杂属性</h3>
+                                <table style=" width:100%" border="1" cellpadding="0" cellspacing="0"
+                                       id="otherFieldList-table" >
+                                    <thead>
+                                    <tr style=" height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">
+                                        <td>
+                                            属性名称
+                                        </td>
+                                        <td>
+                                            类型名称
+                                        </td>
+                                        <td>
+                                            类别
+                                        </td>
+                                        <td>
+                                           描述
+                                        </td>
+                                        <td>
+                                            操作说明
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <script id="otherFieldList-Template" type="text/x-jquery-tmpl">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            ${fieldName}
+                                        </td>
+                                        <td>
+                                            ${typeName}
+                                        </td>
+                                        <td>
+                                            ${category}
+                                        </td>
+                                        <td>
+                                            ${desc}
+                                        </td>
+                                        <td>
+                                            ${compareDesc}
+                                        </td>
+                                    </tr>
+                                </script>
+                            </div>
+                            <div class="control-group" id="categoryList"  style="display:none">
+                                <h3>服务类别</h3>
+                                <table style=" width:100%" border="1" cellpadding="0" cellspacing="0"
+                                       id="categoryList-table" >
+                                    <thead>
+                                    <tr style=" height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">
+                                        <td>
+                                            名称
+                                        </td>
+                                        <td>
+                                            描述
+                                        </td>
+                                        <td>
+                                            操作说明
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <script id="categoryList-Template" type="text/x-jquery-tmpl">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            ${code}
+                                        </td>
+                                        <td>
+                                            ${description}
+                                        </td>
+                                        <td>
+                                            ${compareDesc}
+                                        </td>
+                                    </tr>
+                                </script>
+                            </div>
+                            <div class="control-group" id="defineList"  style="display:none">
+                                <h3>服务接口</h3>
+                                <table style=" width:100%" border="1" cellpadding="0" cellspacing="0"
+                                       id="defineList-table" >
+                                    <thead>
+                                    <tr style=" text-align: center;  height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">
+                                        <td>
+                                            类别名称
+                                        </td>
+                                        <td>
+                                            方法名称
+                                        </td>
+                                        <td>
+                                            版本
+                                        </td>
+                                        <td>
+                                            执行器
+                                        </td>
+                                        <td>
+                                            过滤器
+                                        </td>
+                                        <td>
+                                            描述
+                                        </td>
+                                        <td>
+                                            操作说明
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <script id="defineList-Template" type="text/x-jquery-tmpl">
+                                    <tr>
+                                        <td>
+                                            ${serviceName}
+                                        </td>
+                                        <td>
+                                            ${methodName}
+                                        </td>
+                                        <td>
+                                            ${methodVersion}
+                                        </td>
+                                        <td>
+                                            ${executor}
+                                        </td>
+                                        <td>
+                                            ${filters}
+                                        </td>
+                                        <td>
+                                            ${description}
+                                        </td>
+                                        <td>
+                                            ${compareDesc}
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8">
+                                            <span  style=" height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">输入参数</span>
+                                            <table  style="text-align: center;width:100%" border="1" cellpadding="0" cellspacing="0">
+                                                <thead>
+                                                <tr style=" height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">
+                                                    <td>属性名称</td>
+                                                    <td>属性类别</td>
+                                                    <td>是否必须</td>
+                                                    <td>位置</td>
+                                                    <td>类型名称</td>
+                                                    <td>描述</td>
+                                                    <td>别名</td>
+                                                    <td>操作说明</td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {{each inputList}}
+                                                <tr>
+                                                    <td> ${$value.fieldName}</td>
+                                                    <td>${$value.category}</td>
+                                                    <td> ${$value.required}</td>
+                                                    <td>${$value.position}</td>
+                                                    <td> ${$value.typeName}</td>
+                                                    <td>${$value.desc}</td>
+                                                    <td>${$value.otherName}</td>
+                                                    <td> ${$value.compareDesc}</td>
+                                                </tr>
+                                                {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8">
+                                            <span   style=" height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">输出参数</span>
+                                            <table  style=" text-align: center; width:100%" border="1" cellpadding="0" cellspacing="0">
+                                                <thead>
+                                                <tr style=" height:30px;text-align: center; font-size: larger; font-weight: bolder; background: none repeat scroll 0 0 #D6E3F1 !important;">
+                                                    <td>属性名称</td>
+                                                    <td>属性类别</td>
+                                                    <td>是否必须</td>
+                                                    <td>位置</td>
+                                                    <td>类型名称</td>
+                                                    <td>描述</td>
+                                                    <td>别名</td>
+                                                    <td>操作说明</td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {{each outputList}}
+                                                <tr>
+                                                    <td> ${$value.fieldName}</td>
+                                                    <td>${$value.category}</td>
+                                                    <td> ${$value.required}</td>
+                                                    <td>${$value.position}</td>
+                                                    <td> ${$value.typeName}</td>
+                                                    <td>${$value.desc}</td>
+                                                    <td>${$value.otherName}</td>
+                                                    <td> ${$value.compareDesc}</td>
+                                                </tr>
+                                                {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </script>
+                            </div>
+
+                            <div class="form-actions" style="padding:10px;" id="btn-success" >
+                                <input type="hidden" id="fileName" name="fileName" value=""  />
+                                <a class="btn btn-success" href="javascript:void 0" ng-click="save()" >提交</a>
+                                <a class="btn btn-success" href="javascript:void 0" ng-click="resetting()" >重置</a>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM widget-->
+
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+        <!--END:BODY-->
+    </div>
+    <!-- END PAGE CONTENT-->
+</div>
+
+<!--#include file="../_footer.html"-->
+<script src="controller/upload.js"></script>
+<script src="../../../framework-kendoui/kendoui/js/kendo.web.min.js"></script>
+<script src="../../../framework/linq/linq.min.js"></script>
+<script src="../../../framework/jquery/jquery.tmpl.min.js"></script>
+
+<script src="controller/service.js"></script>
+<script src="controller/list-page-new.js"></script>
+
+
+</body>
+</html>

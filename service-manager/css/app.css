@@ -1,0 +1,18 @@
+body{background-color: #FFFFFF; background-image: none;    padding: 0 0 !important;}
+#frame-main-content { padding: 0 0 150px 0;}
+
+/* bootstarp响应式布局的容器，这里是重写他的边距
+.container-fluid{  padding-left: 10px;  padding-right: 10px; }
+                                                 */
+
+/* 框架内页面的导航区域容器 */
+.nav{}
+    /* 框架页面顶部的工具按钮组窗口，通常放 添加、刷新、后退按钮 */
+    .page-btn-group{ padding-top:50px; padding-right:10px; text-align:right; }
+
+/* 框架页面主内容区域（不包括 导航区域 部分的容器） */
+.content-body{ min-height:600px; }
+
+
+.toolbar input {margin-bottom:0;}
+.toolbar .col{margin-top:0;}

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin Dashboard Page</title>
+    <link href="../../../framework/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../framework/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../../../framework/component/uniform/uniform.default.min.css" rel="stylesheet">
+    <link href="../../../framework/style/font-myriadpro.css" rel="stylesheet">
+    <link href="../../../framework/style/font-awesome.css" rel="stylesheet">
+
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style-responsive.css" rel="stylesheet">
+    <link href="../../css/theme-default.css" rel="stylesheet" id="style_color"><!--此id用于动态切换模板-->
+    <link href="../../css/app.less" rel="stylesheet/less"><!--使用JS实时编译LESS文件，严重影响页面的加载速度。在生产环境中，应先将LESS编译为CSS，并修改这里。-->
+
+    <!--这里加载JS是为了能预先处理好界面的效果，避免出现界面“闪烁”的情况-->
+    <script src="../../../framework/jquery/jquery-1.8.3.min.js"></script>
+    <script src="../../../framework/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="../../../framework/less/es5-shim.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/less/less-1.4.2.min.js"></script><!--如果需要在IE6、7、8中使用，请先在引入less.js前先引入es5-shim.js-->
+    <!-- ie8 fixes -->
+    <!--[if lt IE 9]>
+    <script src="../../../framework/ie/excanvas.min.js"></script>
+    <script src="../../../framework/ie/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/component/uniform/jquery.uniform.min.js"></script>
+
+    <script src="../../script/app.js"></script>
+    <script src="../../script/ui-compile.js"></script>
+<title>接口管理列表</title>
+<link href="../../../framework-jqwidgets/jqwidgets/styles/jqx.base.css" rel="stylesheet"/>
+<link href="../../../framework-jqwidgets/jqwidgets/styles/jqx.bootstrap.css" rel="stylesheet"/>
+<link href="../../../framework/bootstrap/bootstrap-datetimepicker.css" rel="stylesheet"/>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="fixed-top" ng-controller="mainCtrl">
+    <div id="frame-main-content">
+        <div class="container-fluid">
+
+
+<script id="tabCtrl-toolbar" type="text/x-jquery-tmpl">
+    <div class="J_toolbar">
+        <div style="width:100%;padding-top: 5px;">
+            <div class="J_toolbar_text" style="float:left;">类别名: </div>
+            <div style="float:left;width:20%"><input name="code" class='jqx-input jqx-widget-content jqx-rc-all J_search' type='text' style="width:100%" /></div>
+            <div class="J_toolbar_text" style="float:left;">方法名: </div>
+            <div style="float:left;width:20%"><input name="methodName" class='jqx-input jqx-widget-content jqx-rc-all J_search' type='text' style="width:100%" /></div>
+            <div class="J_toolbar_text" style="float:left;">版本: </div>
+            <div style="float:left;width:20%"><input name="versions" class='jqx-input jqx-widget-content jqx-rc-all J_search' type='text' style="width:100%" /></div>
+            <button class="toolbar-search btn J_bt_search"><i class="icon-search"></i> 搜索</button>
+        </div>
+    </div>
+</script>
+<script id="tabCtrl-statusbar" type="text/x-jquery-tmpl">
+    <div class="uitable_statusbar">
+        <div class="btn-group">
+            <button class="btn btn-mini J_select_all">全选</button>
+            <button class="btn btn-mini J_select_un">反选</button>
+        </div>
+        <button class="btn J_bt_cp"><i class="icon-road"></i> 选择接口</button>
+
+
+    </div>
+</script>
+<script id="tab2Ctrl-statusbar" type="text/x-jquery-tmpl">
+    <div class="uitable_statusbar">
+        <div class="btn-group">
+            <button class="btn btn-mini J_select_all">全选</button>
+            <button class="btn btn-mini J_select_un">反选</button>
+        </div>
+        <button class="btn J_bt_de"><i class="icon-road"></i> 删除接口</button>
+
+    </div>
+</script>
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            接口复制
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="../welcome/welcome.shtml"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">接入客户端管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="list.shtml">接口管理</a><span class="divider">&nbsp;</span></li>
+
+            <li><a href="#">复制</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="后退" href="list.shtml"><i class="icon-chevron-left"></i></a>
+            <a onclick="location.reload()"  class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="merchantApiCopyCtrl">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+            <div class="content-body">
+                <div class="widget widget-tabs">
+                    <div class="widget-title">
+                        <h4><i class="icon-reorder"></i>接口复制</h4>
+                    </div>
+                    <div class="widget-body">
+                        <form name="form" method="post" novalidate class="form-horizontal">
+                            <div class="tabbable portlet-tabs">
+                                <ul class="nav nav-tabs">
+                                    <li><a href="#portlet_tab2" data-toggle="tab">字段列表</a></li>
+                                    <li class="active"><a href="#portlet_tab1" data-toggle="tab">基础信息</a></li>
+                                </ul>
+                                <div class="tab-content" >
+                                    <div class="tab-pane active" id="portlet_tab1">
+                                        <div class="control-group">
+                                            <label class="control-label">客户端名称：</label>
+                                            <div class="controls">
+                                                <select id = "clientName"  ng-model="project.clientId"  class="span4" required>
+                                                    <option ng-repeat="client in project.clientVos" value="{{client.id}}" ng-selected="client.id==project.clientId">
+                                                        {{client.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">状态：</label>
+                                            <div class="controls">
+                                                <label class="radio"><input type="radio" name="status" value="1" ng-model="project.status"/>有效</label>
+                                                <label class="radio"><input type="radio" name="status" value="0" ng-model="project.status"/>无效</label>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">生效时间：</label>
+                                            <div class="controls">
+                                                <div class=" input-append date start_datetime"  data-link-field="aliveTime" >
+                                                    <input size="16" type="text" id="aliveTime"  value="" ng-model="project.aliveTime" readonly>
+                                                    <span class="add-on"><i class="icon-remove"></i></span>
+                                                    <span class="add-on"><i class="icon-th"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">失效时间：</label>
+                                            <div class="controls">
+                                                <div class=" input-append date end_datetime"  data-link-field="destoryTime">
+                                                    <input size="16" type="text" value=""  id="destoryTime" ng-model="project.destoryTime" readonly>
+                                                    <span class="add-on"><i class="icon-remove"></i></span>
+                                                    <span class="add-on"><i class="icon-th"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">描述：</label>
+                                            <div class="controls">
+                                                <textarea  id="description"  value="" class="span4" style="height:50px" ng-model="project.description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="portlet_tab2"  ng-controller="tab2Ctrl">
+                                        <div class="row-fluid" >
+                                            <div class="span6 "  >
+                                                <div class="widget-title">
+                                                    <h5>接口选择</h5>
+                                                </div>
+                                                <div class="gridselect">
+                                                </div>
+                                            </div>
+                                            <div class="span6" >
+                                                <div class="widget-title">
+                                                    <h5>已选择的接口</h5>
+                                                </div>
+                                                <div class="gridselected">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions" style="padding:10px;">
+                                <a class="btn btn-success" href="javascript:void 0" ng-click="save(form.$invalid)" ng-disabled="form.$invalid">提交</a>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+         </div>
+</div>
+<div ng-controller="endCtrlForIframe"></div>
+
+     <!-- BEGIN JAVASCRIPTS -->
+     <!-- Load javascripts at bottom, this will reduce page load time -->
+     <script src="../../../framework/jquery/jquery.tmpl.min.js"></script>
+     <script src="../../../framework/jquery/jquery.query.min.js"></script>
+     <script src="../../../framework/angular/angular.min.js"></script>
+     <script src="../../../framework/angular/angular-resource.min.js"></script>
+     <script src="../../../framework/angular/angular-route.min.js"></script>
+     <script src="../../../framework/LAB/LAB.min.js"></script>
+
+     <script src="../../../framework/framework.js"></script>
+     <script src="../../../framework/main-controller.js"></script>
+
+     <!--<script src="../../../framework-kendoui/ng-grid-kendoui/directive.js"></script>-->         <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!--<script src="../../../framework-jqwidgets/ng-grid-jqwidgets/directive.js"></script>-->     <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!-- END JAVASCRIPTS -->
+
+ <!-- END BODY -->
+<script src="../../../framework-jqwidgets/jqwidgets/globalization/globalize.js"></script>
+<script src="../../../framework-jqwidgets/jqwidgets/jqx-all.js"></script>
+<script src="../../../framework/bootstrap/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../framework/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="controller/datetime.js"></script>
+<script src="controller/service.js"></script>
+<script src="controller/copy-controller.js"></script>
+
+</body>
+</html>

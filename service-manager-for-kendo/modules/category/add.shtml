@@ -1,0 +1,96 @@
+<!--#include file="../_header.html"-->
+<title>系统级参数添加</title>
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            服务类别添加
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li><a href="../welcome/welcome.shtml"><i class="icon-home"></i></a><span class="divider">&nbsp;</span></li>
+            <li><a href="#">服务管理</a> <span class="divider">&nbsp;</span></li>
+              <li><a href="list.shtml">服务类别</a> <span class="divider">&nbsp;</span></li>
+            <li><a href="#">添加</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="后退" href="list.shtml"><i class="icon-chevron-left"></i></a>
+            <a id="category-refresh" onclick="location.reload()" class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="category.add">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+	
+            <div class="content-body" >
+                <div class="widget">
+                    <div class="widget-title">
+                        <h4><i class="icon-reorder"></i>服务类别修改</h4>
+                        <span class="tools"></span>
+                    </div>
+                    <div class="widget-body form">
+                        <form name="form" method="post" novalidate class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label">名称：</label>
+
+                                <div class="controls">
+                                    <input type="text" name="code" style="width:200px" ng-model="project.code" min="0"
+                                           max="10" required/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">同步状态：</label>
+
+                                <div class="controls">
+                                    <label class="radio"><input type="radio" name="synProduct" value="0" ng-model="project.synProduct"/>不同步</label>
+                                    <label class="radio"><input type="radio" name="synProduct" value="1" ng-model="project.synProduct"/>同步</label>
+                                    <label class="radio"><input type="radio" name="synProduct" value="2" ng-model="project.synProduct"/>已同步</label>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">状态:</label>
+
+                                <div class="controls">
+                                    <label class="radio"><input type="radio" name="status" value="1" ng-model="project.status"/>有效</label>
+                                    <label class="radio"><input type="radio" name="status" value="0" ng-model="project.status"/>无效</label>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">描述:</label>
+                                <div class="controls">
+                                    <textarea style="width:550px;height:60px" name="description" cols="80" rows="2" ng-model="project.description"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-actions" style="padding:10px;">
+                                <a class="btn btn-success" href="javascript:void 0" ng-click="save(form.$invalid)" ng-disabled="form.$invalid">提交</a>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+<!--#include file="../_footer.html"-->
+    <script src="controller/service.js"></script>
+    <script src="controller/add-controller.js"></script>
+
+</body>
+</html>

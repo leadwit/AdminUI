@@ -1,0 +1,79 @@
+<!--#include file="../_header.html"-->
+<title>简单类型</title>
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            简单类型列表
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">简单数据</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">简单类型</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a id="simpleData-refresh" ng-click="refreshPage()"  class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="simpleDataList">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+            <div class="content-body">
+
+                <table class="angular-grid" id="grid1"
+                       ng-grid-jqwidgets="'grid1':'grid1','url':'{{gridUrl}}','pagesize':'20','width':'98%','showstatusbar':false">
+                    <thead><tr><td>
+                        <div class="span3">
+                            类型名称:<input name="name" class='jqx-input J_search' type='text' ng-keydown="search2($event)" style="width:100%" />
+                            <button class="toolbar-search btn btn-mini J_bt_search" ng-click="search()"><i class="icon-search"></i> 搜索</button>
+                        </div>
+                    </td></tr></thead>
+                    <tbody>
+                    <tr>
+                        <th data-fieldName="indexNum" data-fieldType="int" data-width="10%" data-template="">序号</th>
+                        <th data-fieldName="name" data-fieldType="string" data-width="15%">名称</th>
+                        <th data-fieldName="needFormat" data-fieldType="string" data-width="15%"
+                            data-renderer="function needFormatRenderer(row, column, value){return value=='1' ? '是':'否'}" >是否须指定格式</th>
+                        <th data-fieldName="status" data-fieldType="string" data-width="10%"
+                            data-renderer="function statusRenderer(row, column, value){return value=='1' ? '有效':'无效/作废'}">状态</th>
+                        <th data-fieldName="description" data-fieldType="string" data-width="25%">描述</th>
+                        <th data-fieldName="createTime" data-fieldType="string" data-width="15%">创建时间</th>
+                        <th data-fieldName="createBy" data-fieldType="string" data-width="10%">创建人</th>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+
+<!--#include file="../_footer.html"-->
+<script src="controller/service.js"></script>
+<script src="controller/list-controller.js"></script>
+<script src="../../../framework-jqwidgets/directive-grid.js"></script>   <!--可以在这里单独调用，也可以在容器中统一调用-->
+
+</body>
+</html>

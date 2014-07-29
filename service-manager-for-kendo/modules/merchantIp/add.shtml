@@ -1,0 +1,124 @@
+<!--#include file="../_header.html"-->
+<title>客户端IP管理列表</title>
+<link href="../../../framework/bootstrap/bootstrap-datetimepicker.css" rel="stylesheet"/>
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            添加客户端IP
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="../welcome/welcome.shtml"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">接入客户端管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="list.shtml">客户端IP管理列表</a><span class="divider">&nbsp;</span></li>
+            <li><a href="#">添加</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="后退" href="list.shtml"><i class="icon-chevron-left"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<div ng-controller="merchantIpAddCtrl">
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h4><i class="icon-reorder"></i>添加客户端IP</h4>
+                        <span class="tools"></span>
+                    </div>
+                    <div class="widget-body form">
+                    <!-- BEGIN FORM-->
+                    <form name="form"  method="post" novalidate  class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">名称：</label>
+                            <div class="controls">
+                                <select name="clientName" ng-model="project.clientId" class="span4" required >
+                                    <option ng-repeat="client in project.clients" value="{{client.id}}"
+                                            ng-selected="client.id==project.clientId" >
+                                        {{client.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">ip地址:</label>
+                            <div class="controls">
+                                <input type="text" name="ipAddress" ng-model="project.ipAddress"  class="span4" required />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">状态:</label>
+                            <div class="controls">
+                                <label class="radio"><input type="radio" name="status" value="1"  ng-model="project.status" required />有效</label>
+                                <label class="radio"><input type="radio" name="status" value="0"  ng-model="project.status" />无效</label>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">生效时间：</label>
+                            <div class="controls">
+                                <div class=" input-append date start_datetime"  data-link-field="dtp_aliveTimes" >
+                                    <input size="16" type="text" id="dtp_aliveTimes"  value="" ng-model="project.aliveTime"  required>
+                                    <span class="add-on"><i class="icon-remove"></i></span>
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">失效时间：</label>
+                            <div class="controls">
+                                <div class=" input-append date end_datetime"  data-link-field="dtp_destoryTime">
+                                    <input size="16" type="text" value=""  id="dtp_destoryTime" ng-model="project.destoryTime" >
+                                    <span class="add-on"><i class="icon-remove"></i></span>
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">描述:</label>
+                            <div class="controls">
+                                <textarea  class="span4" style="height:60px" cols="80" rows="2" name="description" ng-model="project.description" ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions" style="padding:10px;">
+                            <a class="btn btn-success" href="javascript:void 0" ng-click="save(form.$invalid)" ng-disabled="form.$invalid">提交</a>
+                        </div>
+                    </form>
+                    <!-- END FORM-->
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM widget-->
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+    </div>
+        <!--END:BODY-->
+</div>
+    <!-- END PAGE CONTENT-->
+<!--#include file="../_footer.html"-->
+    <script src="../../../framework/bootstrap/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../../framework/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <script src="controller/datetime.js"></script>
+    <script src="controller/service.js"></script>
+    <script src="controller/add-controller.js"></script>
+
+</body>
+</html>

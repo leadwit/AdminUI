@@ -1,0 +1,104 @@
+<!--#include file="../_header.html"-->
+<title>服务接口列表</title>
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            服务接口列表
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="../welcome/welcome.shtml"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">服务管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">服务接口</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="添加" href="add.shtml"><i class="icon-plus"></i></a>
+            <a onclick="location.reload()"  class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="serviceList">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+            <div class="content-body">
+
+                <table class="angular-grid" id="grid1" ng-grid-kendoui="'url':'{{gridUrl}}','pagesize':'15','width':'98%','selectable':'multiple, row'">
+                    <thead><tr><td>
+                        <input name="code" type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="接入商户名称" title="接入商户名称"/>
+                        <input name="methodName" type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="方法名" title="方法名"/>
+                        <input name="methodVersion" type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="版本" title="版本" />
+                        <button class="toolbar-search btn" ng-click="search()"><i class="icon-search"></i> 搜索</button>
+                    </td></tr></thead>
+                    <tbody>
+                    <tr>
+                        <th data-fieldName="indexNum" data-fieldType="int" data-width="5%" data-template="">序号</th>
+                        <th data-fieldName="category" data-fieldType="string" data-width="10%">名称</th>
+                        <th data-fieldName="methodName" data-fieldType="string" data-width="10%">方法名称</th>
+                        <th data-fieldName="methodVersion" data-fieldType="string" data-width="5%">版本</th>
+                        <th data-fieldName="status" data-fieldType="string" data-width="10%"
+                            data-renderer="function statusRenderer(dataItem){return dataItem.status=='1' ? '有效':'无效';}">状态</th>
+                        <th data-fieldName="description" data-fieldType="string" data-width="20%">描述</th>
+                        <th data-fieldName="synProduct" data-fieldType="string" data-width="10%" data-renderer="
+                        function synProductRenderer(dataItem){
+                            if(dataItem.synProduct=='1'){
+                                return '同步';
+                            }else if(dataItem.synProduct=='0'){
+                                return '不同步';
+                            }else if(dataItem.synProduct=='2'){
+                                return '已同步';
+                          };
+                        }
+                     ">同步状态</th>
+                        <th data-fieldName="createTime" data-fieldType="string" data-width="15%">创建时间</th>
+                        <th data-fieldName="createBy" data-fieldType="string" data-width="10%">创建人</th>
+                        <th data-fieldName="id" data-fieldType="string" data-width="5%" data-renderer="
+                            function idRenderer(dataItem)
+                            {
+                                return '<a href=\'detail.shtml?id='+dataItem.id+'\'>详情</a>';
+                            }
+                    ">详情</th>
+                    </tr>
+                    </tbody>
+                    <tfoot><tr><td>
+                        <!--<div class="btn-group hide">-->
+                        <!--<button class="btn btn-mini J_select_all">全选</button>-->
+                        <!--<button class="btn btn-mini J_select_un">反选</button>-->
+                        <!--</div>-->
+                        <button type="button" class="btn J_bt_del"ng-click="leadingOut()"><i class="icon-trash"></i>导出</button>
+                        <button type="button" class="btn J_bt_del"ng-click="leadingIn()"><i class="icon-trash"></i> 导入</button>
+                    </td></tr></tfoot>
+                </table>
+
+            </div>
+
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+
+<!--#include file="../_footer.html"-->
+
+<script src="controller/service.js"></script>
+<script src="controller/list-controller.js"></script>
+<script src="../../../framework-kendoui/directive-grid.js"></script> <!--可以在这里单独调用，也可以在容器中统一调用-->
+
+</body>
+</html>

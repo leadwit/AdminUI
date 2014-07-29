@@ -1,0 +1,186 @@
+<!--#include file="../_header.html"-->
+    <title>服务接口添加</title>
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            服务接口添加
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="../welcome/welcome.shtml"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">服务管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="list.shtml">服务接口</a><span class="divider">&nbsp;</span></li>
+            <li><a href="#">添加</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="后退" href="list.shtml"><i class="icon-chevron-left"></i></a>
+            <a onclick="location.reload()"  class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="serviceAddCtrl">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+            <div class="content-body">
+                <div class="widget widget-tabs">
+                    <div class="widget-title">
+                        <h4><i class="icon-reorder"></i>添加服务接口</h4>
+                    </div>
+                    <div class="widget-body">
+                        <form name="form" method="post" novalidate class="form-horizontal">
+                            <div class="tabbable portlet-tabs">
+                                <ul class="nav nav-tabs">
+                                    <li><a href="#portlet_tab3" data-toggle="tab">输出参数</a></li>
+                                    <li><a href="#portlet_tab2" data-toggle="tab">输入参数</a></li>
+                                    <li class="active"><a href="#portlet_tab1" data-toggle="tab">基础信息</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="portlet_tab1">
+                                        <div class="control-group">
+                                            <label class="control-label">服务类别：</label>
+                                            <div class="controls">
+                                                <select id="categorySelect" name = "select2" ng-model="project.category"  class="select" required>
+                                                    <option ng-repeat="category in categoryList" value="{{category.id}}">
+                                                        {{category.code}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">方法名称：</label>
+                                            <div class="controls">
+                                                <input   type="text" name="methodName" ng-model="project.methodName"  style = "width:200px;" min="0" max="10"  required/>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">版本号:</label>
+                                            <div class="controls">
+                                                <input   type="text" name="methodVersion" ng-model="project.methodVersion" style = "width:200px;" min="0" max="10" required />
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">执行器:</label>
+                                            <div class="controls">
+                                                <input   type="text" name="executor" ng-model="project.executor" style = "width:200px;" min="0" max="10" required />
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">过滤器:</label>
+                                            <div class="controls">
+                                                <input   type="text" name="filters" ng-model="project.filters"  style = "width:200px;" min="0" max="10" required />
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">同步状态：</label>
+                                            <div class="controls">
+                                                <label class="radio"><input type="radio" name="synProduct" value="0"  ng-model="project.synProduct" />不同步</label>
+                                                <label class="radio"><input type="radio" name="synProduct" value="1"  ng-model="project.synProduct" />同步</label>
+                                                <label class="radio"><input type="radio" name="synProduct" value="2"  ng-model="project.synProduct" />已同步</label>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">状态：</label>
+                                            <div class="controls">
+                                                <label class="radio"><input type="radio" name="status" value="1" ng-model="project.status"/>有效</label>
+                                                <label class="radio"><input type="radio" name="status" value="0" ng-model="project.status"/>无效</label>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">描述：</label>
+                                            <div class="controls">
+                                                <textarea  id="description"  value="" style="width:400px;height:50px" ng-model="project.description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="portlet_tab2">
+                                        <div>
+                                            <button id="addrowbutton" type="button" class="btn" ng-click="plus()"><i class="icon-remove icon-plus"></i> 新增</button>
+                                            <button id="deleterowbutton" type="button" class="btn btn-danger" ng-click="deleteRow()"><i class="icon-remove icon-white"></i> 删除</button>
+                                        </div>
+                                        <div class="uitable2">
+                                            <!--添加后内容View {'name':'test','category':'','isMust':'','position':'','description':'','alias':''}-->
+                                            <table class="angular-grid" id="grid1"  ng-grid-kendoui="'width':'98%','sortable':'false',
+                                            'pageable':'false',
+                                            'filterable':'false','resizable':'false'">
+                                                <tbody>
+                                                <tr>
+                                                    <th data-fieldName="fieldName" data-fieldType="string" data-width="15%">属性</th>
+                                                    <th data-fieldName="category" data-fieldType="string" data-width="15%">类型</th>
+                                                    <th data-fieldName="typeName" data-fieldType="string" data-width="15%">类别</th>
+                                                    <th data-fieldName="required" data-fieldType="string" data-width="15%">是否必须</th>
+                                                    <th  data-fieldName="position"  data-fieldType="int" data-width="10%">位置</th>
+                                                    <th data-fieldName="desc" data-fieldType="string" data-width="15%">描述</th>
+                                                    <th data-fieldName="otherName" data-fieldType="string" data-width="15%">别名</th>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="portlet_tab3">
+                                        <div>
+                                            <button id="addrowbuttonOut" type="button" class="btn" ng-click="plusOut()"><i class="icon-remove icon-plus"></i> 新增</button>
+                                            <button id="deleterowbuttonOut" type="button" class="btn btn-danger"  ng-click="deleteRowOut()"><i class="icon-remove icon-white"></i> 删除</button>
+                                        </div>
+
+                                        <div class="uitable3">
+                                            <!--添加后内容View {'name':'test','category':'','isMust':'','position':'','description':'','alias':''}-->
+                                            <table class="angular-grid" id="grid2"  ng-grid-kendoui="'width':'98%','sortable':'false',
+                                            'pageable':'false',
+                                            'filterable':'false','resizable':'false'">
+                                                <tbody>
+                                                <tr>
+                                                    <th data-fieldName="fieldName" data-fieldType="string" data-width="15%">属性</th>
+                                                    <th data-fieldName="category" data-fieldType="string" data-width="15%">类型</th>
+                                                    <th data-fieldName="typeName" data-fieldType="string" data-width="15%">类别</th>
+                                                    <th data-fieldName="required" data-fieldType="string" data-width="15%">是否必须</th>
+                                                    <th  data-fieldName="position"  data-fieldType="int" data-width="10%">位置</th>
+                                                    <th data-fieldName="desc" data-fieldType="string" data-width="15%">描述</th>
+                                                    <th data-fieldName="otherName" data-fieldType="string" data-width="15%">别名</th>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions" style="padding:10px;">
+                                <a class="btn btn-success" href="javascript:void 0" ng-click="save(form.$invalid)" ng-disabled="form.$invalid">提交</a>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+<!--#include file="../_footer.html"-->
+
+    <script src="controller/service.js"></script>
+    <script src="controller/add-controller.js"></script>
+    <!--<script src="../../../framework-jqwidgets/directive-grid.js"></script>   可以在这里单独调用，也可以在容器中统一调用-->
+    <script src="../../../framework-kendoui/directive-grid.js"></script> <!--可以在这里单独调用，也可以在容器中统一调用-->
+
+</body>
+</html>

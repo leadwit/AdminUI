@@ -1,0 +1,98 @@
+<!--#include file="../_header.html"-->
+<title>服务同步管理列表</title>
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+           服务同步列表
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">服务管理管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">服务同步</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a onclick="location.reload()" class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="serviceSynList">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+            <div class="content-body">
+
+                <table class="angular-grid" id="grid1" ng-grid-jqwidgets="'url':'{{gridUrl}}','pagesize':'20','width':'98%'">
+                    <thead><tr><td>
+                        <div class="span3">
+                            类型名称:<input name="name" class='jqx-input J_search' type='text' ng-keydown="search2($event)" style="width:100%" />
+                            <button class="toolbar-search btn btn-mini J_bt_search" ng-click="search()"><i class="icon-search"></i> 搜索</button>
+                        </div>
+                    </td></tr></thead>
+                    <tbody>
+                    <tr>
+                        <th data-fieldName="id" data-fieldType="string" data-width="5%">主键ID</th>
+                        <th data-fieldName="name" data-fieldType="string" data-width="15%">名称</th>
+                        <th data-fieldName="typeName" data-fieldType="string" data-width="15%">类型名称</th>
+                        <th data-fieldName="methodVersion" data-fieldType="string" data-width="5%">版本</th>
+                        <th data-fieldName="status" data-fieldType="string" data-width="10%"
+                            data-renderer="function statusRenderer(row, column, value){return value=='1' ? '有效':'无效';}">状态</th>
+                        <th data-fieldName="description" data-fieldType="string" data-width="15%">描述</th>
+                        <th data-fieldName="synProduct" data-fieldType="string" data-width="10%" data-renderer="
+                        function synProductRenderer(row, column, value){
+                            if(value=='1'){	return '同步';
+                                }else if(value=='0'){
+                                return '不同步';
+                                }else if(value=='2'){
+                                return '已同步';
+                              };
+                        }
+                     ">同步状态</th>
+                        <th data-fieldName="updateTime" data-fieldType="string" data-width="15%">修改时间</th>
+                        <th data-fieldName="updateBy" data-fieldType="string" data-width="10%">修改人</th>
+                    </tr>
+                    </tbody>
+                    <tfoot><tr><td>
+                        <div class="btn-group hide">
+                            <button class="btn btn-mini J_select_all">全选</button>
+                            <button class="btn btn-mini J_select_un">反选</button>
+                        </div>
+                        <button class="btn J_bt_close" ng-click="close()"><i class="icon-pause"></i> 关闭同步</button>
+                        <button class="btn J_bt_open" ng-click="open()"><i class="icon-play"></i> 打开同步</button>
+                        <button class="btn J_bt_dbt" ng-click="single()"><i class=" icon-forward"></i> 单笔同步</button>
+                        <button class="btn J_bt_qbt" ng-click="all()"><i class="icon-fast-forward"></i> 全部同步</button>
+                    </td></tr></tfoot>
+                </table>
+
+            </div>
+
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+
+<!--#include file="../_footer.html"-->
+<script src="controller/service.js"></script>
+<script src="controller/list-controller.js"></script>
+<script src="../../../framework-jqwidgets/directive-grid.js"></script>   <!--可以在这里单独调用，也可以在容器中统一调用-->
+
+</body>
+</html>

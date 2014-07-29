@@ -1,0 +1,102 @@
+<!--#include file="../_header.html"-->
+<title>添加-结构体类型字段属性</title>
+<link href="../../../framework-kendoui/kendoui/styles/kendo.common.min.css" rel="stylesheet"/>
+<link href="../../../framework-kendoui/kendoui/styles/kendo.default.min.css" rel="stylesheet"/>
+<!--#include file="../_header-end.html"-->
+
+<div ng-controller="pageCtrl">
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -------------------------------------------->
+
+                <!-- BEGIN SAMPLE FORM widget-->
+                <div class="widget">
+
+                    <div class="widget-body form">
+                        <!-- BEGIN FORM-->
+                        <form action="#" class="form-horizontal">
+
+
+                            <!--类型-->
+                            <div class="control-group">
+                                <label class="control-label">类别</label>
+                                <div class="controls">
+                                    <input type="radio" value="SIMPLE" class="J_radio" name="type" checked="true"/><span style="margin-top:5px">简单类型</span>
+                                    <input type="radio" value="LIST" class="J_radio" name="type"/><span>LIST类型</span>
+                                    <input type="radio" value="STRUCTURE" class="J_radio" name="type"/><span>结构类型</span>
+                                </div>
+                            </div>
+
+                            <div class="control-group J_Show_type J_SIMPLE">
+                                <label class="control-label">属性<span style="color:#ff0000">*</span></label>
+                                <div class="controls">
+
+                                    <div style="padding-bottom: 5px;">
+                                        <input type="text" class="J_keyWord" ng-keydown="search2($event)"  placeholder="输入关键词..." />
+                                        <button type="button" class="btn btn-small" ng-click="QueryKey()">查询</button>
+                                    </div>
+
+                                    <select class="span6 J_SIMPLE_SEL" id="J_SIMPLE_SEL">
+                                        <option>点击查询加载属性...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--是否必须-->
+                            <div class="control-group">
+                                <label class="control-label">是否必须</label>
+                                <div class="controls">
+                                    <select class="span6 J_isMust">
+                                        <option value="1">必须</option>
+                                        <option value="0">非必须</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--位置-->
+                            <div class="control-group">
+                                <label class="control-label">位置<span style="color:#ff0000">*</span></label>
+                                <div class="controls">
+                                    <input type="text" class="span6 J_position" />
+                                </div>
+                            </div>
+                            <!--描述-->
+                            <div class="control-group">
+                                <label class="control-label">描述<span style="color:#ff0000">*</span></label>
+                                <div class="controls">
+                                    <input type="text" class="span6 J_desc" ng-model="flistData.desc" />
+                                </div>
+                            </div>
+                            <!--别名-->
+                            <div class="control-group">
+                                <label class="control-label">别名</label>
+                                <div class="controls">
+                                    <input type="text" class="span6 J_otherName" ng-model="flistData.otherName"/>
+                                </div>
+                            </div>
+
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM widget-->
+
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+        <!--END:BODY-->
+    </div>
+    <!-- END PAGE CONTENT-->
+</div>
+
+<!--#include file="../_footer.html"-->
+<script src="../../../framework-kendoui/kendoui/js/kendo.web.min.js"></script>
+<script src="../../../framework/linq/linq.min.js"></script>
+
+<script src="controller/service.js"></script>
+<script src="controller/add-page-new.js"></script>
+
+
+</body>
+</html>

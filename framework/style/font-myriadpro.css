@@ -1,0 +1,44 @@
+/*这部分字体定义从AdminLab UI中迁移过来*/
+@font-face {
+    font-family: 'MyriadPro-Bold';
+    src: url('font/myriadprobold.eot');
+    src: url('font/myriadprobold.eot?#iefix') format('embedded-opentype'),
+    url('font/myriadprobold.woff') format('woff'),
+    url('font/myriadprobold.ttf') format('truetype'),
+    url('font/myriadprobold.svg#myriadprobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MyriadPro-It';
+    src: url('font/myriadproit.eot');
+    src: url('font/myriadproit.eot?#iefix') format('embedded-opentype'),
+    url('font/myriadproit.woff') format('woff'),
+    url('font/myriadproit.ttf') format('truetype'),
+    url('font/myriadproit.svg#myriadproit') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MyriadPro-Light';
+    src: url('font/myriadprolight.eot');
+    src: url('font/myriadprolight.eot?#iefix') format('embedded-opentype'),
+    url('font/myriadprolight.woff') format('woff'),
+    url('font/myriadprolight.ttf') format('truetype'),
+    url('font/myriadprolight.svg#myriadprolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MyriadPro-Regular';
+    src: url('font/myriadproregular.eot');
+    src: url('font/myriadproregular.eot?#iefix') format('embedded-opentype'),
+    url('font/myriadproregular.woff') format('woff'),
+    url('font/myriadproregular.ttf') format('truetype'),
+    url('font/myriadproregular.svg#myriadproregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

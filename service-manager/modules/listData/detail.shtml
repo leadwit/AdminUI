@@ -1,0 +1,115 @@
+<!--#include file="../_header.html"-->
+<title>列表类型</title>
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            列表类型详情
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">数据类型管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="list.shtml">列表类型列表</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">详情</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="后退" href="list.shtml"><i class="icon-chevron-left"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<div ng-controller="listDataDetailCtrl">
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h4><i class="icon-reorder"></i>列表类型详情</h4>
+                        <span class="tools"></span>
+                    </div>
+
+                    <div class="widget-body form">
+                        <!-- BEGIN FORM-->
+                        <form name="form"  method="post" novalidate  class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label">名称：</label>
+                                <div class="controls">
+                                    <input class="span4" type="text" name="name" ng-model="project.name" min="0" max="10" readonly />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">状态：</label>
+                                <div class="controls">
+                                    <label class="radio">
+                                        <input type="radio" name="status" value="1"  ng-model="project.status"   disabled/>有效
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="status" value="0"  ng-model="project.status" disabled/>无效
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">元素类型:</label>
+                                <div class="controls">
+                                    <select  name="elementSelect" ng-model="project.elementId"  readonly>
+                                        <option ng-repeat="element in typeList" value="{{element.id}}"  ng-selected="element.id==project.elementId"  disabled>
+                                            {{element.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.category}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">同步状态:</label>
+                                <div class="controls">
+                                    <label class="radio">
+                                        <input type="radio" name="synProduct" value="0"  ng-model="project.synProduct"  disabled/>不同步
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="synProduct" value="1"  ng-model="project.synProduct" disabled/>同步
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="synProduct" value="2"  ng-model="project.synProduct" disabled/>已同步
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">描述:</label>
+                                <div class="controls">
+                                    <textarea  class="span4"   style="height:60px" cols="80" rows="2" name="description" ng-model="project.description" readonly></textarea>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM widget-->
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+<!--#include file="../_footer.html"-->
+<script src="controller/service.js"></script>
+<script src="controller/detail-controller.js"></script>
+
+</body>
+</html>

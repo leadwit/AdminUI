@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin Dashboard Page</title>
+    <link href="../../../framework/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../framework/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../../../framework/component/uniform/uniform.default.min.css" rel="stylesheet">
+    <link href="../../../framework/style/font-myriadpro.css" rel="stylesheet">
+    <link href="../../../framework/style/font-awesome.css" rel="stylesheet">
+
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style-responsive.css" rel="stylesheet">
+    <link href="../../css/theme-default.css" rel="stylesheet" id="style_color"><!--此id用于动态切换模板-->
+    <link href="../../css/app.less" rel="stylesheet/less"><!--使用JS实时编译LESS文件，严重影响页面的加载速度。在生产环境中，应先将LESS编译为CSS，并修改这里。-->
+
+    <!--这里加载JS是为了能预先处理好界面的效果，避免出现界面“闪烁”的情况-->
+    <script src="../../../framework/jquery/jquery-1.8.3.min.js"></script>
+    <script src="../../../framework/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="../../../framework/less/es5-shim.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/less/less-1.4.2.min.js"></script><!--如果需要在IE6、7、8中使用，请先在引入less.js前先引入es5-shim.js-->
+    <!-- ie8 fixes -->
+    <!--[if lt IE 9]>
+    <script src="../../../framework/ie/excanvas.min.js"></script>
+    <script src="../../../framework/ie/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/component/uniform/jquery.uniform.min.js"></script>
+
+    <script src="../../script/app.js"></script>
+    <script src="../../script/ui-compile.js"></script>
+<title>添加-结构体类型字段属性</title>
+<link href="../../../framework-kendoui/kendoui/styles/kendo.common.min.css" rel="stylesheet"/>
+<link href="../../../framework-kendoui/kendoui/styles/kendo.default.min.css" rel="stylesheet"/>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="fixed-top" ng-controller="mainCtrl">
+    <div id="frame-main-content">
+        <div class="container-fluid">
+
+
+<div ng-controller="pageCtrl">
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -------------------------------------------->
+
+                <!-- BEGIN SAMPLE FORM widget-->
+                <div class="widget">
+
+                    <div class="widget-body form">
+                        <!-- BEGIN FORM-->
+                        <form action="#" class="form-horizontal">
+
+
+                            <!--类型-->
+                            <div class="control-group">
+                                <label class="control-label">类别</label>
+                                <div class="controls">
+                                    <input type="radio" value="SIMPLE" class="J_radio" name="type" checked="true"/><span style="margin-top:5px">简单类型</span>
+                                    <input type="radio" value="LIST" class="J_radio" name="type"/><span>LIST类型</span>
+                                    <input type="radio" value="STRUCTURE" class="J_radio" name="type"/><span>结构类型</span>
+                                </div>
+                            </div>
+
+                            <div class="control-group J_Show_type J_SIMPLE">
+                                <label class="control-label">属性<span style="color:#ff0000">*</span></label>
+                                <div class="controls">
+
+                                    <div style="padding-bottom: 5px;">
+                                        <input type="text" class="J_keyWord" ng-keydown="search2($event)"  placeholder="输入关键词..." />
+                                        <button type="button" class="btn btn-small" ng-click="QueryKey()">查询</button>
+                                    </div>
+
+                                    <select class="span6 J_SIMPLE_SEL" id="J_SIMPLE_SEL">
+                                        <option>点击查询加载属性...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--是否必须-->
+                            <div class="control-group">
+                                <label class="control-label">是否必须</label>
+                                <div class="controls">
+                                    <select class="span6 J_isMust">
+                                        <option value="1">必须</option>
+                                        <option value="0">非必须</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--位置-->
+                            <div class="control-group">
+                                <label class="control-label">位置<span style="color:#ff0000">*</span></label>
+                                <div class="controls">
+                                    <input type="text" class="span6 J_position" />
+                                </div>
+                            </div>
+                            <!--描述-->
+                            <div class="control-group">
+                                <label class="control-label">描述<span style="color:#ff0000">*</span></label>
+                                <div class="controls">
+                                    <input type="text" class="span6 J_desc" ng-model="flistData.desc" />
+                                </div>
+                            </div>
+                            <!--别名-->
+                            <div class="control-group">
+                                <label class="control-label">别名</label>
+                                <div class="controls">
+                                    <input type="text" class="span6 J_otherName" ng-model="flistData.otherName"/>
+                                </div>
+                            </div>
+
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM widget-->
+
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+        <!--END:BODY-->
+    </div>
+    <!-- END PAGE CONTENT-->
+</div>
+
+         </div>
+</div>
+<div ng-controller="endCtrlForIframe"></div>
+
+     <!-- BEGIN JAVASCRIPTS -->
+     <!-- Load javascripts at bottom, this will reduce page load time -->
+     <script src="../../../framework/jquery/jquery.tmpl.min.js"></script>
+     <script src="../../../framework/jquery/jquery.query.min.js"></script>
+     <script src="../../../framework/angular/angular.min.js"></script>
+     <script src="../../../framework/angular/angular-resource.min.js"></script>
+     <script src="../../../framework/angular/angular-route.min.js"></script>
+     <script src="../../../framework/LAB/LAB.min.js"></script>
+
+     <script src="../../../framework/framework.js"></script>
+     <script src="../../../framework/main-controller.js"></script>
+
+     <!--<script src="../../../framework-kendoui/ng-grid-kendoui/directive.js"></script>-->         <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!--<script src="../../../framework-jqwidgets/ng-grid-jqwidgets/directive.js"></script>-->     <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!-- END JAVASCRIPTS -->
+
+ <!-- END BODY -->
+<script src="../../../framework-kendoui/kendoui/js/kendo.web.min.js"></script>
+<script src="../../../framework/linq/linq.min.js"></script>
+
+<script src="controller/service.js"></script>
+<script src="controller/add-page-new.js"></script>
+
+
+</body>
+</html>

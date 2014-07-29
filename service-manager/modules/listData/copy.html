@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin Dashboard Page</title>
+    <link href="../../../framework/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../framework/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../../../framework/component/uniform/uniform.default.min.css" rel="stylesheet">
+    <link href="../../../framework/style/font-myriadpro.css" rel="stylesheet">
+    <link href="../../../framework/style/font-awesome.css" rel="stylesheet">
+
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style-responsive.css" rel="stylesheet">
+    <link href="../../css/theme-default.css" rel="stylesheet" id="style_color"><!--此id用于动态切换模板-->
+    <link href="../../css/app.less" rel="stylesheet/less"><!--使用JS实时编译LESS文件，严重影响页面的加载速度。在生产环境中，应先将LESS编译为CSS，并修改这里。-->
+
+    <!--这里加载JS是为了能预先处理好界面的效果，避免出现界面“闪烁”的情况-->
+    <script src="../../../framework/jquery/jquery-1.8.3.min.js"></script>
+    <script src="../../../framework/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="../../../framework/less/es5-shim.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/less/less-1.4.2.min.js"></script><!--如果需要在IE6、7、8中使用，请先在引入less.js前先引入es5-shim.js-->
+    <!-- ie8 fixes -->
+    <!--[if lt IE 9]>
+    <script src="../../../framework/ie/excanvas.min.js"></script>
+    <script src="../../../framework/ie/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/component/uniform/jquery.uniform.min.js"></script>
+
+    <script src="../../script/app.js"></script>
+    <script src="../../script/ui-compile.js"></script>
+<title>列表类型</title>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="fixed-top" ng-controller="mainCtrl">
+    <div id="frame-main-content">
+        <div class="container-fluid">
+
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            列表类型复制
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">数据类型管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="list.shtml">列表类型列表</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">复制</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="后退" href="list.shtml"><i class="icon-chevron-left"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<div ng-controller="listDataCopyCtrl">
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h4><i class="icon-reorder"></i>列表类型复制</h4>
+                        <span class="tools"></span>
+                    </div>
+
+                    <div class="widget-body form">
+                        <!-- BEGIN FORM-->
+                        <form name="form"  method="post" novalidate  class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label">名称：</label>
+                                <div class="controls">
+                                    <input class="span4" type="text" name="name" ng-model="project.name" min="0" max="10" required />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">状态：</label>
+                                <div class="controls">
+                                    <label class="radio">
+                                        <input type="radio" name="status" value="1"  ng-model="project.status"   required/>有效
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="status" value="0"  ng-model="project.status" required/>无效
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">元素类型:</label>
+                                <div class="controls">
+                                    <select  name="elementSelect" ng-model="project.elementId"  required>
+                                        <option ng-repeat="element in typeList" value="{{element.id}}" ng-selected="element.id==project.elementId" >
+                                            {{element.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.category}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">同步状态:</label>
+                                <div class="controls">
+                                    <label class="radio">
+                                        <input type="radio" name="synProduct" value="0"  ng-model="project.synProduct" />不同步
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="synProduct" value="1"  ng-model="project.synProduct"/>同步
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="synProduct" value="2"  ng-model="project.synProduct"/>已同步
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">描述:</label>
+                                <div class="controls">
+                                    <textarea  class="span4"   style="height:60px" cols="80" rows="2" name="description" ng-model="project.description" ></textarea>
+                                </div>
+                            </div>
+                            <div class="form-actions" style="padding:10px;">
+                                <a class="btn btn-success" href="javascript:void 0" ng-click="save(form.$invalid)" ng-disabled="form.$invalid">提交</a>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM widget-->
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+         </div>
+</div>
+<div ng-controller="endCtrlForIframe"></div>
+
+     <!-- BEGIN JAVASCRIPTS -->
+     <!-- Load javascripts at bottom, this will reduce page load time -->
+     <script src="../../../framework/jquery/jquery.tmpl.min.js"></script>
+     <script src="../../../framework/jquery/jquery.query.min.js"></script>
+     <script src="../../../framework/angular/angular.min.js"></script>
+     <script src="../../../framework/angular/angular-resource.min.js"></script>
+     <script src="../../../framework/angular/angular-route.min.js"></script>
+     <script src="../../../framework/LAB/LAB.min.js"></script>
+
+     <script src="../../../framework/framework.js"></script>
+     <script src="../../../framework/main-controller.js"></script>
+
+     <!--<script src="../../../framework-kendoui/ng-grid-kendoui/directive.js"></script>-->         <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!--<script src="../../../framework-jqwidgets/ng-grid-jqwidgets/directive.js"></script>-->     <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!-- END JAVASCRIPTS -->
+
+ <!-- END BODY -->
+<script src="controller/service.js"></script>
+<script src="controller/copy-controller.js"></script>
+
+</body>
+</html>

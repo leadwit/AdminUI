@@ -1,0 +1,95 @@
+<!--#include file="../_header.html"-->
+<title>属性</title>
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            属性列表
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">数据类型管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">属性</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a id="fieldData-add" class="btn btn-large tip-bottom" title="添加" href="add.shtml"><i class="icon-plus"></i></a>
+            <a id="fieldData-refresh" onclick="location.reload()"  class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="fieldDataList">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+            <div class="content-body">
+
+                <table class="angular-grid" id="grid1"
+                       ng-grid-jqwidgets="'url':'{{gridUrl}}','pagesize':'20','width':'98%'">
+                    <thead><tr><td>
+                        <div class="span3">
+                            属性名称:<input name="name" class='jqx-input J_search' type='text' ng-keydown="search2($event)" style="width:100%" />
+                            <button class="toolbar-search btn btn-mini  J_bt_search" ng-click="search()"><i class="icon-search"></i> 搜索</button>
+                        </div>
+                    </td></tr></thead>
+                    <tbody>
+                    <tr>
+                        <th data-fieldName="indexNum" data-fieldType="int" data-width="5%" data-template="">序号</th>
+                        <th data-fieldName="name" data-fieldType="string" data-width="15%">名称</th>
+                        <th data-fieldName="typeName" data-fieldType="string" data-width="15%">类型名称</th>
+                        <th data-fieldName="category" data-fieldType="string" data-width="10%">类型</th>
+                        <th data-fieldName="status" data-fieldType="string" data-width="5%"
+                            data-renderer="function statusRenderer(row, column, value){return value=='1' ? '有效':'无效';}">状态</th>
+                        <th data-fieldName="description" data-fieldType="string" data-width="15%">描述</th>
+                        <th data-fieldName="createTime" data-fieldType="string" data-width="15%">创建时间</th>
+                        <th data-fieldName="createBy" data-fieldType="string" data-width="10%">创建人</th>
+                        <th data-fieldName="id" data-fieldType="string" data-width="10%" data-renderer="
+                            function idRenderer(row, column,value)
+                            {
+                                   return  '<a  href=\'detail.shtml?id='+value+'\'>详情</a>';
+                            }
+                    ">详情</th>
+                    </tr>
+                    </tbody>
+                    <tfoot><tr><td>
+                        <!--<div class="btn-group">-->
+                        <!--<button class="btn btn-mini J_select_all">全选</button>-->
+                        <!--<button class="btn btn-mini J_select_un">反选</button>-->
+                        <!--</div>-->
+                        <button class="btn J_bt_cp" ng-click="copy()"><i class="icon-road"></i> 复制</button>
+                        <button class="btn J_bt_up" ng-click="update()"><i class="icon-edit"></i> 修改</button>
+                        <button id="remove" class="btn"  ng-click="delete()"><i class="icon-remove"></i> 删除</button>
+                    </td></tr></tfoot>
+                </table>
+
+            </div>
+
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+
+<!--#include file="../_footer.html"-->
+<script src="controller/service.js"></script>
+<script src="controller/list-controller.js"></script>
+<script src="../../../framework-jqwidgets/directive-grid.js"></script>   <!--可以在这里单独调用，也可以在容器中统一调用-->
+
+</body>
+</html>

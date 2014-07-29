@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>使用说明 - LESSCSS中文官网</title>
+    <meta name="description" content="LESSCSS中文官网">
+    <meta name="keywords" content="LESS,LESSCSS,CSS,样式表,预处理">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet/less" href="../css/main.less">
+    <script src="../js/less.js"></script>
+  </head>
+  <body>
+    <section id="menu">
+      <div class="content">
+        <nav><a href="./home.html">首页</a><a href="./usage.html">使用说明</a><a href="./document.html">语言特性</a><a href="./reference.html">函数手册</a><a href="./changelog.html">更新日志</a><a href="./resource.html">资源汇总</a><a href="https://github.com/cloudhead/less.js" target="_blank">Github(源)</a><a href="https://github.com/feichang/lesscss.net" target="_blank">Github(中文)</a><a href="http://veryless.org/" target="_blank">VeryLess</a></nav>
+      </div>
+    </section>
+    <section id="docs" class="page page-light">
+      <div class="content"><h2>使用koala编译</h2>
+
+<p>Koala 是一款由国人开发的开源预处理语言图形编译工具，目前已支持 <strong>Less</strong>、<strong>Sass</strong>、<strong>Compass</strong> 与 <strong>CoffeeScript</strong>。</p>
+
+<p>目前支持以下系统：Windows，Mac, 10.7+，Linux: 32bit / 64bit，Ubuntu: 32bit / 64bit；</p>
+
+<p>我们可以从他们官方网站下载 koala：<a href="http://koala-app.com/index-zh.html">点击进入</a>,使用文档<a href="https://github.com/oklai/koala/wiki/%E4%B8%AD%E6%96%87wiki%E9%A6%96%E9%A1%B5">点击进入</a></p>
+
+<h3>使用方法：</h3>
+
+<ol>
+<li><p>安装完成后打开 Koala，把<strong>文件夹</strong>拖入界面或者是在左侧加号处选择文件夹，此时在界面左边有文件夹路径产生。</p>
+
+<p><img src="/images/usage_1.jpg" alt="选择文件夹" title="" /></p></li>
+<li><p>同时有 less 文件将显示在界面中间，右键文件选择输出 CSS 文件的路径。</p>
+
+<p><img src="/images/usage_2.jpg" alt="设置输出路径" title="" /></p></li>
+<li><p>左键点击 less 文件在右边则有功能选项栏弹出，下面将介绍功能。</p>
+
+<p><img src="/images/usage_2.jpg" alt="设置输出选项" title="" /></p></li>
+</ol>
+
+<h3>功能介绍：</h3>
+
+<h4>自动编译（实时编译）：</h4>
+
+<p>当开启自动编译时，使用编辑器按下 Ctrl+S 保存时，CSS 文档会自动更新。如果没有打开这个功能，那么需要使用者在自行点击"执行编译"才更新 CSS 文档。</p>
+
+<p><img src="/images/usage_4.jpg" alt="自动更新选择" title="" /></p>
+
+<h4>编译选项：</h4>
+
+<ol>
+<li>行注释（line comments）：这个功能会在 css 文件里对应的 less 编译出来的 css 代码上方提供一个注释。注释的内容分别说明来自 less 的第几行开始，同时标明是来自那个 less 文件。</li>
+<li><p>调试信息（debug info）：这个调试功能是在保存时自动检测有无错误，注意实时编译关闭时不会开启，需要在你执行时才弹出错误。所以，建议开启实时编译。目前调试功能仅能检测出一些影响编译的错误：例如没有带{}、没带分号。这些错误，而有没有使用选择器或者样式输入错误则不会提示。</p>
+
+<p><img src="/images/usage_5.jpg" alt="输出调试信息" title="" /></p></li>
+<li><p>输出方式（代码压缩）：</p>
+
+<ul><li>正常（normal）：顾名思义，就是不压缩。</li>
+<li>压缩（compress）：顾名思义，就是压缩。</li>
+<li>YUI压缩（YUIcompress）：使用 YUI 的压缩打包工具进行压缩。</li></ul>
+
+<p><img src="/images/usage_6.jpg" alt="设置输出方式" title="" /></p></li>
+</ol>
+
+<h2>Node.js命令行中使用</h2>
+
+<h3>安装</h3>
+
+<p>在Node.js中安装LESS最简单的方式就是使用Node包管理工具npm来安装：</p>
+
+<pre><code>npm install -g less
+</code></pre>
+
+<p>如果你使用Mac或者Linux，可能需要使用管理员身份安装：</p>
+
+<pre><code>sudo npm install -g less
+</code></pre>
+
+<h3>在命令行中使用</h3>
+
+<p>一旦安装完成，就可以在命令行中调用，例如：</p>
+
+<pre><code>lessc styles.less
+</code></pre>
+
+<p>这样的话编译后的CSS将会输出到stdout中，你可以选择将这个输出重定向到文件中：</p>
+
+<pre><code>lessc styles.less &gt; styles.css
+</code></pre>
+
+<p>如果你想输出一个压缩后的CSS，只要加到<code>-x</code>选项即可。如果你想要更NB的压缩，你也可以选择使用YUI CSS压缩器，只要加上<code>--yui-compress</code>选项即可。</p>
+
+<p>直接运行lessc，不带任何参数将可以看到所有的命令行参数。</p>
+
+<h2>在Node.js代码中使用</h2>
+
+<p>你可以在Node中调用编译器，例如：</p>
+
+<pre><code>var less = require('less');
+
+less.render('.class { width: (1 + 1) }', function (e, css) {
+    console.log(css);
+});
+</code></pre>
+
+<p>将会输出</p>
+
+<pre><code>.class {
+    width: 2;
+}
+</code></pre>
+
+<p>你也可以手工调用解析器和编译器：</p>
+
+<pre><code>var parser = new(less.Parser);
+
+parser.parse('.class { width: (1 + 1) }', function (err, tree) {
+    if (err) { return console.error(err) }
+    console.log(tree.toCSS());
+});
+</code></pre>
+
+<h3>设置</h3>
+
+<p>你可以给编译器传入一些参数：</p>
+
+<pre><code>var parser = new(less.Parser)({
+    paths: ['.', './lib'], // 指定@import搜索的目录
+    filename: 'style.less' // 为了更好地输出错误信息，可以指定一个文件名
+});
+
+parser.parse('.class { width: (1 + 1) }', function (e, tree) {
+    tree.toCSS({ compress: true }); // 压缩输出的CSS
+});
+</code></pre>
+
+<h2>浏览器端使用</h2>
+
+<p>你也可以直接在浏览器中使用LESS，详情请<a href="./usage_browser.html">查看这里</a>。</p></div>
+    </section>
+    <section class="page page-dark">
+      <div class="content">
+        <h2>About</h2>
+        <p><a href="http://cloudhead.io">Alexis Sellier(LESS作者)</a><span>&nbsp|&nbsp</span><a href="http://veryued.org">飞长(LESS中国官网发起人)</a>
+          <!--span &nbsp|&nbsp-->
+          <!--a(href='http://ued.taobao.com', target='_blank') TaoBao UED-->
+        </p>
+        <p>QQ交流群：248796244</p>
+        <p>贡献者：<a href="http://veryued.org">飞长</a><span>&nbsp|&nbsp</span><a href="http://www.toobug.net">TooBug</a><span>&nbsp|&nbsp</span><a href="https://github.com/yuyucongcong">郁郁葱葱</a><span>&nbsp|&nbsp</span><a href="http://peters-playground.com/">Peter</a><span>&nbsp|&nbsp</span><a href="http://weibo.com/iwillwen">小问</a></p>
+        <p><a href="https://me.alipay.com/lesscss" target="_blank">赞助</a><span>(感谢赞助：星星、*海经、*德文 )</span><span>&nbsp|&nbsp</span><a href="https://github.com/feichang/lesscss.net">参与中文官网建设</a></p>
+        <footer></footer>
+      </div>
+    </section>
+    <script src="/js/hiless.js"></script>
+    <script type="text/javascript" src="http://js.tongji.linezing.com/2707131/tongji.js"></script>
+    <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2707131/tongji.gif"></a></noscript>
+    <script src="http://tajs.qq.com/stats?sId=26444603" charset="UTF-8"></script>
+  </body>
+</html>

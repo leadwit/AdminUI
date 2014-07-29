@@ -1,0 +1,73 @@
+<!--#include file="../_header.html"-->
+    <title>Angular Kendo Grid演示</title>
+    <link href="../../../framework-kendoui/kendoui/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="../../../framework-kendoui/kendoui/styles/kendo.default.min.css" rel="stylesheet"/>
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            Angular Kendo Grid演示
+            <small>Angular Kendo Grid DEMO</small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">Grid</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">grid CRUD</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+
+        <div class="btn-group">
+            <a id="gridCRUD-add" class="btn btn-large tip-bottom" title="添加" href="#/gridCRUD/add"><i class="icon-plus"></i></a>
+            <a id="gridCRUD-refresh" ng-click="refreshPage()"  class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="angularKendoGridCtrl">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+
+            <div class="content-body">
+                <div>当222前选中的行{{selectedItem}}</div>
+                <div kendo-grid k-data-source="datas" k-selectable="'row'"
+                     k-toolbar='[{ name: "create" },
+                            { name: "save" },
+                            { name: "cancel" }]'
+                     k-pageable='false'
+                     k-columns='[{ "field": "id", "title": "ID"},{ "field": "name", "title": "名称"}]'
+                     k-sortable="false" k-filterable="false"
+                     k-on-change="rowSelected(kendoEvent)">
+                </div>
+
+            </div>
+
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+
+<!--#include file="../_footer.html"-->
+    <script src="../../../framework-kendoui/kendoui/js/kendo.web.min.js"></script>
+    <script src="../../../framework-kendoui/angular-kendo.min.js"></script>
+
+    <script src="controller/service.js"></script>
+    <script src="controller/angular-kendo-grid-controller.js"></script>
+
+</body>
+</html>

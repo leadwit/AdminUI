@@ -1,0 +1,109 @@
+<!--#include file="../_header.html"-->
+<title>密钥管理列表</title>
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            密钥管理列表
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="../welcome/welcome.shtml"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">接入客户端管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">密钥管理</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a id="systemParam-add" class="btn btn-large tip-bottom" title="添加" href="add.shtml"><i class="icon-plus"></i></a>
+            <a id="systemParam-refresh" onclick="location.reload()"  class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="merchantCertList">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+            <div class="content-body">
+
+                <table class="angular-grid" id="grid1"
+                       ng-grid-kendoui="'url':'{{gridUrl}}','pagesize':'15','width':'980px'">
+                    <thead><tr><td>
+                        <input name="name"  type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="接入商户名称" title="接入商户名称" />
+                        <button class="toolbar-search btn" ng-click="search()"><i class="icon-search"></i> 搜索</button>
+                    </td></tr></thead>
+                    <tbody>
+                    <tr>
+                        <th data-fieldName="clientName" data-fieldType="string" data-width="80px" data-template="">名称</th>
+                        <th data-fieldName="account" data-fieldType="string" data-width="80px">帐号</th>
+                        <th data-fieldName="certType" data-fieldType="string" data-width="80px" data-renderer="
+                        function certTypeRenderer(dataItem){return dataItem.certType=='1' ? '系统提供':'商户提供';}" >证书类型</th>
+                        <th data-fieldName="certName" data-fieldType="string" data-width="80px">证书名称</th>
+                        <th data-fieldName="pubKeyName" data-fieldType="string" data-width="80px">公钥名称</th>
+                        <th data-fieldName="privKeyName" data-fieldType="string" data-width="80px">私钥名称</th>
+                        <th data-fieldName="aliveTime" data-fieldType="string" data-width="150px">生效时间</th>
+                        <th data-fieldName="destoryTime" data-fieldType="string" data-width="150px">过期时间</th>
+                        <th data-fieldName="privKeyPassword" data-fieldType="string" data-width="80px">私钥密码</th>
+                        <th data-fieldName="status" data-fieldType="string" data-width="80px"
+                            data-renderer="function statusRenderer(dataItem){return dataItem.status=='1' ? '有效':'无效';}">状态</th>
+                        <th data-fieldName="description" data-fieldType="string" data-width="150px">描述</th>
+                        <th data-fieldName="createTime" data-fieldType="string" data-width="150px">创建时间</th>
+                        <th data-fieldName="createBy" data-fieldType="string" data-width="80px">创建人</th>
+                        <th data-fieldName="certType2" data-fieldType="string" data-width="200px"  data-renderer="
+                            function certType2Renderer(dataItem)
+                            {
+                               if(dataItem.certType=='1'){
+                                return '<a href=\'../../../merchant/cert.do?method=download&downType=0&id='+dataItem.id+'\' target=\'\'>下载私钥</a>    <a href=\'../../../merchant/cert.do?method=download&downType=1&id='+dataItem.id+'\'>下载公钥</a>';
+                               }else{
+                                    return '<a href=\'../../../merchant/cert.do?method=download&downType=1&id='+dataItem.id+'\' target=\'\'>下载公钥</a>';
+                               }
+                            }
+                     ">下载</th>
+                        <th data-fieldName="id" data-fieldType="string" data-width="80px" data-renderer="
+                            function idRenderer(dataItem)
+                            {
+                                 return  '<a  href=\'detail.shtml?id='+dataItem.id+'\'>详情</a>';
+                            }
+                    ">详情</th>
+                    </tr>
+                    </tbody>
+                    <tfoot><tr><td>
+                        <!--<div class="btn-group">-->
+                            <!--<button class="btn btn-mini J_select_all">全选</button>-->
+                            <!--<button class="btn btn-mini J_select_un">反选</button>-->
+                        <!--</div>-->
+                        <button type="button" class="btn J_bt_cp" ng-click="copy()"><i class="icon-road"></i> 复制</button>
+                        <button type="button" class="btn J_bt_up" ng-click="update()"><i class="icon-edit"></i> 修改</button>
+                        <button type="button" id="remove" class="btn"  ng-click="delete()"><i class="icon-remove"></i> 删除</button>
+                    </td></tr></tfoot>
+                </table>
+
+            </div>
+
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+
+  <!--#include file="../_footer.html"-->
+   <script src="controller/service.js"></script>
+   <script src="controller/list-controller.js"></script>
+   <script src="../../../framework-kendoui/directive-grid.js"></script> <!--可以在这里单独调用，也可以在容器中统一调用-->
+
+</body>
+</html>

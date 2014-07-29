@@ -1,0 +1,63 @@
+<!--#include file="../_header.html"-->
+    <title>WELCOME</title>
+    <link rel="stylesheet" href="../../../framework/component/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="../../../framework/component/jqwidgets/styles/jqx.bootstrap.css"  media="screen" />
+<!--#include file="../_header-end.html"-->
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            Grid演示
+            <small>grid CRUD DEMO</small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">Grid</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">grid CRUD</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+
+        <div class="btn-group">
+            <a id="gridCRUD-add" class="btn btn-large tip-bottom" title="添加" href="#/gridCRUD/add"><i class="icon-plus"></i></a>
+            <a id="gridCRUD-refresh" ng-click="refreshPage()"  class="J_sys_refresh btn btn-large tip-bottom" title="刷新"><i class="icon-refresh"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div id="page" ng-controller="baseListCtrl">
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- 内容区域 -------------------------------------------->
+
+            <div class="content-body">
+                <div class="jqwidgets-grid"></div>
+            </div>
+
+            <!-- 内容区域 END ---------------------------------------->
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+
+
+    <!--#include file="../_footer.html"-->
+    <script src="../../../framework/component/jqwidgets/jqx-all.js"></script>
+    <script src="../../../framework/component/jqwidgets/globalization/globalize.js"></script>
+
+    <script src="controller/service.js"></script>
+    <script src="controller/controller.js"></script>
+
+</body>
+</html>

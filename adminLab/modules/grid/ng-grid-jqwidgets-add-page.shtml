@@ -1,0 +1,154 @@
+<!--#include file="../_header.html"-->
+    <title>ngJqwidgets Grid 添加演示</title>
+<!--#include file="../_header-end.html"-->
+
+<div ng-controller="pageCtrl">
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -------------------------------------------->
+
+                <!-- BEGIN SAMPLE FORM widget-->
+                <div class="widget">
+
+                    <div class="widget-body form">
+                    <!-- BEGIN FORM-->
+                    <form action="#" class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label">传入ID</label>
+                        <div class="controls">
+                            <input type="text" class="span6" ng-model="data.id"/>
+                            <span class="help-inline">调用页面传过来的ID</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Input with Popover</label>
+                        <div class="controls">
+                            <input type="text" class="span6  popovers" data-trigger="hover" value="{{abc}}"
+                                   data-content="Popover body goes here. Popover body goes here."
+                                   data-original-title="Popover header"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Input with Tooltip</label>
+
+                        <div class="controls">
+                            <input type="text" class="span6  tooltips" data-trigger="hover"
+                                   data-original-title="Tooltip text goes here. Tooltip text goes here."/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Email Address Input</label>
+
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on">@</span><input class=" " type="text" placeholder="Email Address"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Email Address Input</label>
+
+                        <div class="controls">
+                            <div class="input-icon left">
+                                <i class="icon-envelope"></i>
+                                <input class=" " type="text" placeholder="Email Address"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Currency Input</label>
+
+                        <div class="controls">
+                            <div class="input-prepend input-append">
+                                <span class="add-on">$</span><input class=" " type="text"/><span class="add-on">.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Default Dropdown</label>
+
+                        <div class="controls">
+                            <select class="span6 " data-placeholder="Choose a Category" tabindex="1">
+                                <option value="">Select...</option>
+                                <option value="Category 1">Category 1</option>
+                                <option value="Category 2">Category 2</option>
+                                <option value="Category 3">Category 5</option>
+                                <option value="Category 4">Category 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Default Dropdown(Multiple)</label>
+
+                        <div class="controls">
+                            <select class="span6 " multiple="multiple" data-placeholder="Choose a Category" tabindex="1">
+                                <option value="Category 1">Category 1</option>
+                                <option value="Category 2">Category 2</option>
+                                <option value="Category 3">Category 5</option>
+                                <option value="Category 4">Category 4</option>
+                                <option value="Category 3">Category 6</option>
+                                <option value="Category 4">Category 7</option>
+                                <option value="Category 3">Category 8</option>
+                                <option value="Category 4">Category 9</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Radio Buttons</label>
+                        <div class="controls">
+                            <label class="radio">
+                                <input type="radio" name="optionsRadios1" value="option1"/>
+                                Option 1
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="optionsRadios1" value="option2" checked/>
+                                Option 2
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="optionsRadios1" value="option2"/>
+                                Option 3
+                            </label>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Checkbox</label>
+
+                        <div class="controls">
+                            <label class="checkbox">
+                                <input type="checkbox" value=""/> Checkbox 1
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" value=""/> Checkbox 2
+                            </label>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Textarea</label>
+
+                        <div class="controls">
+                            <textarea class="span6 " rows="3"></textarea>
+                        </div>
+                    </div>
+                    </form>
+                    <!-- END FORM-->
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM widget-->
+
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+        <!--END:BODY-->
+    </div>
+    <!-- END PAGE CONTENT-->
+</div>
+
+    <!--#include file="../_footer.html"-->
+    <script src="controller/ng-grid-jqwidgets-add-page.js"></script>
+
+</body>
+</html>

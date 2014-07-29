@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin Dashboard Page</title>
+    <link href="../../../framework/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../framework/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../../../framework/component/uniform/uniform.default.min.css" rel="stylesheet">
+    <link href="../../../framework/style/font-myriadpro.css" rel="stylesheet">
+    <link href="../../../framework/style/font-awesome.css" rel="stylesheet">
+
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style-responsive.css" rel="stylesheet">
+    <link href="../../css/theme-default.css" rel="stylesheet" id="style_color"><!--此id用于动态切换模板-->
+    <link href="../../css/app.less" rel="stylesheet/less"><!--使用JS实时编译LESS文件，严重影响页面的加载速度。在生产环境中，应先将LESS编译为CSS，并修改这里。-->
+
+    <!--这里加载JS是为了能预先处理好界面的效果，避免出现界面“闪烁”的情况-->
+    <script src="../../../framework/jquery/jquery-1.8.3.min.js"></script>
+    <script src="../../../framework/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="../../../framework/less/es5-shim.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/less/less-1.4.2.min.js"></script><!--如果需要在IE6、7、8中使用，请先在引入less.js前先引入es5-shim.js-->
+    <!-- ie8 fixes -->
+    <!--[if lt IE 9]>
+    <script src="../../../framework/ie/excanvas.min.js"></script>
+    <script src="../../../framework/ie/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../../framework/component/uniform/jquery.uniform.min.js"></script>
+
+    <script src="../../script/app.js"></script>
+    <script src="../../script/ui-compile.js"></script>
+<title>密钥管理列表</title>
+<link href="../../../framework/bootstrap/bootstrap-datetimepicker.css" rel="stylesheet"/>
+
+<link rel="stylesheet" href="upload/styles/jquery-ui.css" id="theme" />
+<link rel="stylesheet" href="upload/styles/jquery.fileupload-ui.css" />
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="fixed-top" ng-controller="mainCtrl">
+    <div id="frame-main-content">
+        <div class="container-fluid">
+
+
+<!-- BEGIN PAGE HEADER-->
+<div class="row-fluid">
+    <div class="span10">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            修改密钥
+            <small></small>
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="#">接入客户端管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li>
+                <a href="list.shtml">密钥管理</a> <span class="divider">&nbsp;</span>
+            </li>
+            <li><a href="#">修改</a><span class="divider-last">&nbsp;</span></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+    <div class="span2 page-btn-group">
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="后退" href="list.shtml"><i class="icon-chevron-left"></i></a>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<div ng-controller="merchantCertUpdateCtrl">
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h4><i class="icon-reorder"></i>修改密钥</h4>
+                        <span class="tools"></span>
+                    </div>
+
+                    <div class="widget-body form">
+                        <!-- BEGIN FORM-->
+                        <form name="form" method="post" action="file/cert.do?method=upload" style="height:500px"  enctype="multipart/form-data" novalidate class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label">名称：</label>
+                                <div class="controls">
+                                    <select id="clientName" ng-model="project.clientId" class="span4"  required>
+                                        <option ng-repeat="client in project.clients" value="{{client.id}}"
+                                                ng-selected="client.id==project.clientId">
+                                            {{client.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">证书类型：</label>
+                                <div class="controls">
+                                    <label class="radio"> <input type="radio"  id="certType_sys" name="certType" value="1"  ng-model="project.certType"    ng-click="Upload_ClickCertType()" />系统提供 </label>
+                                    <label class="radio"><input type="radio"  id="certType_mer"  name="certType" value="0"  ng-model="project.certType"    ng-click="Upload_ClickCertType()" />商户提供</label>
+                                </div>
+                            </div>
+
+
+                            <div class="control-group" id="td_upload" style="display: none">
+                                <label class="control-label">选择文件：</label>
+                                <div class="controls">
+                                    <!--upload------------------------------------------------------>
+                                    <div id="fileupload" style="padding-top: 5px; padding-left: 0px;" ng-controller="uploadCtrl">
+
+                                        <div style="float: left; margin-top: 10px;">
+                                            <div class="uploader uploader_m" style="width: 50px;margin-top:-25px; border-right:1px solid #999999; border-bottom-right-radius:9px;border-top-right-radius:9px;">
+                                                <div style="height: 4px"></div>
+                                                <input type="file" name="file" /><span style="margin-left: 12px">选择</span>
+                                            </div>
+                                        </div>
+                                        <div class="fileupload-content" style="float: left; border: 0px;">
+                                            <table class="files" style="margin: 0px; padding: 0px; margin-top: -15px;"></table>
+                                        </div>
+                                    </div>
+                                    <script id="template-upload" type="text/x-jquery-tmpl"
+                                            style="padding: 0px;">
+                                        <tr class="template-upload{{if error}} ui-state-error{{/if}}">
+                                            <td class="preview"></td>
+                                            <td class="name">${name}</td>
+                                            <!--td class="size">${sizef}</!--td--><!--文件大小-->
+                                            {{if error}}
+                                            <td class="error" colspan="2">Error:
+                                                {{if error === 'maxFileSize'}}File is too big
+                                                {{else error === 'minFileSize'}}File is too small
+                                                {{else error === 'acceptFileTypes'}}Filetype not allowed
+                                                {{else error === 'maxNumberOfFiles'}}Max number of files exceeded
+                                                {{else}}${error}
+                                                {{/if}}
+                                            </td>
+                                            {{else}}
+                                            <td class="progress"><div></div></td>
+                                            <td class="start"><button>Start</button></td>
+                                            {{/if}}
+                                            <td class="cancel"><button>Cancel</button></td>
+                                        </tr>
+                                    </script>
+                                    <script id="template-download" type="text/x-jquery-tmpl">
+                                        <tr class="template-download{{if error}} ui-state-error{{/if}}">
+                                            {{if error}}
+                                            <td></td>
+                                            <td class="name">${name}</td>
+                                            <!--td class="size">${sizef}</!--td-->
+                                            <td class="error" colspan="2">Error:
+                                                {{if error === 1}}File exceeds upload_max_filesize (php.ini directive)
+                                                {{else error === 2}}File exceeds MAX_FILE_SIZE (HTML form directive)
+                                                {{else error === 3}}File was only partially uploaded
+                                                {{else error === 4}}No File was uploaded
+                                                {{else error === 5}}Missing a temporary folder
+                                                {{else error === 6}}Failed to write file to disk
+                                                {{else error === 7}}File upload stopped by extension
+                                                {{else error === 'maxFileSize'}}File is too big
+                                                {{else error === 'minFileSize'}}File is too small
+                                                {{else error === 'acceptFileTypes'}}Filetype not allowed
+                                                {{else error === 'maxNumberOfFiles'}}Max number of files exceeded
+                                                {{else error === 'uploadedBytes'}}Uploaded bytes exceed file size
+                                                {{else error === 'emptyResult'}}Empty file upload result
+                                                {{else}}${error}
+                                                {{/if}}
+                                            </td>
+                                            {{else}}
+                                            <td class="preview">
+                                                <input type="hidden" id="fileUrl" name="fileUrl" value="${url}"  ng-model="project.fileUrl"/>
+                                                <input type="hidden" id="fileName" name="fileName" value="${name}"  ng-model="project.fileName"/>
+                                                <span href="${url}" target="_blank"><img src="${thumbnail_url}" style="width:32px;height:32px"></span>
+                                            </td>
+                                            <td class="name">
+                                                <span href="${url}"{{if thumbnail_url}} target="_blank"{{/if}}>${name}</span>
+                                            </td>
+                                            <!--td class="size">${sizef}</!--td-->`
+                                            <td colspan="2"></td>
+                                            {{/if}}
+                                            <td class="delete">
+                                                <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </script>
+                                    <!--upload end--------------------------------------------------------->
+
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">证书名称:</label>
+                                <div class="controls">
+                                    <input type="text" name="certName" value="testssss" class="span4" ng-model="project.certName" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">状态:</label>
+                                <div class="controls">
+                                    <label class="radio"> <input type="radio"   id="status_1" name="status" value="1"  ng-model="project.required"   required/>有效 </label>
+                                    <label class="radio"><input type="radio"  id="status_0" name="status" value="0"  ng-model="project.required"/>无效</label>
+                                </div>
+                            </div>
+                            <div class="control-group J_aliveTime" style="display: none">
+                                <label class="control-label">生效时间:</label>
+                                <div class="controls">
+                                    <div class=" input-append date start_datetime"  data-link-field="aliveTime" >
+                                        <input size="16" type="text" id="aliveTime"  value="" ng-model="project.aliveTime" readonly>
+                                        <span class="add-on"><i class="icon-remove"></i></span>
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="control-group J_destoryTime" style="display: none">
+                                <label class="control-label">失效时间:</label>
+                                <div class="controls">
+                                    <div class=" input-append date end_datetime"  data-link-field="destoryTime">
+                                        <input size="16" type="text" value=""  id="destoryTime" ng-model="project.destoryTime" readonly>
+                                        <span class="add-on"><i class="icon-remove"></i></span>
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">描述:</label>
+                                <div class="controls">
+                                    <textarea  class="span4" style=" height: 60px" cols="80" rows="2"  name="description" ng-model="project.description" > </textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" />
+
+                            <div class="form-actions" style="padding:10px;">
+                                <a class="btn btn-success" href="javascript:void 0" ng-click="save(form.$invalid)" ng-disabled="form.$invalid">提交</a>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM widget-->
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+    </div>
+    <!--END:BODY-->
+</div>
+<!-- END PAGE CONTENT-->
+         </div>
+</div>
+<div ng-controller="endCtrlForIframe"></div>
+
+     <!-- BEGIN JAVASCRIPTS -->
+     <!-- Load javascripts at bottom, this will reduce page load time -->
+     <script src="../../../framework/jquery/jquery.tmpl.min.js"></script>
+     <script src="../../../framework/jquery/jquery.query.min.js"></script>
+     <script src="../../../framework/angular/angular.min.js"></script>
+     <script src="../../../framework/angular/angular-resource.min.js"></script>
+     <script src="../../../framework/angular/angular-route.min.js"></script>
+     <script src="../../../framework/LAB/LAB.min.js"></script>
+
+     <script src="../../../framework/framework.js"></script>
+     <script src="../../../framework/main-controller.js"></script>
+
+     <!--<script src="../../../framework-kendoui/ng-grid-kendoui/directive.js"></script>-->         <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!--<script src="../../../framework-jqwidgets/ng-grid-jqwidgets/directive.js"></script>-->     <!--可以在这里统一调用，也可以在需要使用的页面中单独调用-->
+     <!-- END JAVASCRIPTS -->
+
+ <!-- END BODY -->
+<script src="../../../framework/bootstrap/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../framework/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="controller/datetime.js"></script>
+<script src="controller/service.js"></script>
+<script src="controller/upload.js"></script>
+<script src="controller/update-controller.js"></script>
+
+</body>
+</html>

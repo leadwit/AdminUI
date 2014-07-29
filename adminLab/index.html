@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin Lab Dashboard</title>
+    <link href="../framework/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../framework/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../framework/style/font-awesome.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    <link href="css/theme-gray.css" rel="stylesheet" id="style_color">
+</head>
+<body class="fixed-top" ng-controller="mainCtrl">
+<!-- BEGIN HEADER -->
+<div id="header" class="navbar navbar-inverse navbar-fixed-top">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <!-- BEGIN LOGO -->
+            <a class="brand" href="#">
+                <img src="img/logo.png" alt="Admin Lab">
+            </a>
+            <!-- END LOGO -->
+
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a class="btn btn-navbar collapsed" id="main_menu_trigger" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="arrow"></span>
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <div id="top_menu" class="nav notify-row">
+                <!-- BEGIN NOTIFICATION -->
+                <ul class="nav top-menu">
+                    <!-- BEGIN SETTINGS -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle element J_Settings" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Settings">
+                            <i class="icon-cog"></i>
+                        </a>
+                    </li>
+                    <!-- END SETTINGS -->
+
+                    <!-- BEGIN INBOX DROPDOWN -->
+                    <li class="dropdown" id="header_inbox_bar">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-envelope-alt"></i>
+                            <span id="inbox-num" class="badge badge-important">2</span>
+                        </a>
+                        <ul id="inbox" class="dropdown-menu extended inbox">
+                            <li>
+                                <p>You have 2 new messages</p>
+                            </li>
+                            <li>
+                                <a href="#"><span class="photo"><img src="img/avatar-mini.png" alt="avatar"></span>
+									<span class="subject">
+									<span class="from">Sumon Ahmed</span>
+									<span class="time">3 hrs</span>
+									</span>
+									<span class="message">
+									    This is awesome dashboard templates
+									</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="photo"><img src="img/avatar-mini.png" alt="avatar"></span>
+									<span class="subject">
+									<span class="from">Dulal Khan</span>
+									<span class="time">Just now</span>
+									</span>
+									<span class="message">
+									    Hello, this is an example messages please check
+									</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">See all messages</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END INBOX DROPDOWN -->
+
+                    <!-- BEGIN NOTIFICATION DROPDOWN -->
+                    <li class="dropdown" id="header_notification_bar">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-bell-alt"></i>
+                            <span class="badge badge-warning">2</span>
+                        </a>
+                        <ul class="dropdown-menu extended notification">
+                            <li>
+                                <p>You have 2 new notifications</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-success"><i class="icon-plus"></i></span>
+                                    New user registered.
+                                    <span class="small italic">Just now</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-info"><i class="icon-bullhorn"></i></span>
+                                    Application error.
+                                    <span class="small italic">10 mins</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">See all notifications</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END NOTIFICATION DROPDOWN -->
+
+                </ul>
+            </div>
+            <!-- END  NOTIFICATION -->
+            <!--<span ng-show="loading" class="alert alert-info main-loading" style="position:absolute; top:0; left:45%;">加载中...</span>-->
+
+            <div class="top-nav ">
+                <ul class="nav pull-right top-menu">
+                    <!-- BEGIN SUPPORT -->
+                    <li class="dropdown mtop5">
+
+                        <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Chat">
+                            <i class="icon-comments-alt"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown mtop5">
+                        <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Help">
+                            <i class="icon-headphones"></i>
+                        </a>
+                    </li>
+                    <!-- END SUPPORT -->
+                    <!-- BEGIN USER LOGIN DROPDOWN -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="img/avatar1_small.jpg" alt="">
+                            <span class="username">Mosaddek Hossain</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
+                            <li><a href="#"><i class="icon-tasks"></i> My Tasks</a></li>
+                            <li><a href="#"><i class="icon-calendar"></i> Calendar</a></li>
+                            <li class="divider"></li>
+                            <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+                <!-- END TOP NAVIGATION MENU -->
+
+                <!-- BEGIN THEME CUSTOMIZER-->
+                <div id="theme-change" class="hidden-phone" style="overflow: hidden; width: 20px; height: 22px; padding-top: 3px;">
+                    <i class="icon-cogs"></i>
+                        <span class="settings" style="display: none;">
+                            <span class="text">Theme:</span>
+                            <span class="colors">
+                                <span class="color-default" data-style="default"></span>
+                                <span class="color-gray" data-style="gray"></span>
+                                <span class="color-purple" data-style="purple"></span>
+                                <span class="color-navy-blue" data-style="navy-blue"></span>
+                            </span>
+                        </span>
+                </div>
+                <!-- END THEME CUSTOMIZER-->
+            </div>
+        </div>
+    </div>
+    <!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->
+
+<!-- BEGIN CONTAINER -->
+<div id="container" class="row-fluid">
+    <!-- BEGIN SIDEBAR -->
+    <div id="sidebar" class="nav-collapse collapse">
+
+        <div class="sidebar-toggler hidden-phone"></div>
+
+        <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+        <div class="navbar-inverse">
+            <form class="navbar-search visible-phone">
+                <input type="text" class="search-query" placeholder="Search"/>
+            </form>
+        </div>
+        <!-- END RESPONSIVE QUICK SEARCH FORM -->
+
+        <!-- BEGIN SIDEBAR MENU -->
+        <ul class="sidebar-menu">
+            <li class="has-sub active">
+                <a href="javascript:void 0;">
+                    <span class="icon-box"> <i class="icon-dashboard"></i></span> Dashboard
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub">
+                    <li class="active"><a href="modules/welcome/welcome.html" target="mainFrame">Welcome</a></li>
+                </ul>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:void 0;">
+                    <span class="icon-box"><i class="icon-fire"></i></span> Form Stuff
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub">
+                    <li><a href="modules/form/form-layouts.html" target="mainFrame">Form Layouts</a></li>
+                    <li><a href="modules/form/form-validation.html" target="mainFrame">Form Validation</a></li>
+                    <li><a href="modules/form/form-components.html" target="mainFrame">Form Components</a></li>
+                </ul>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:void 0;">
+                    <span class="icon-box"><i class="icon-fire"></i></span> UI Element
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub">
+                    <li><a href="modules/ui-element/general.html" target="mainFrame">General</a></li>
+                    <li><a href="modules/ui-element/buttons.html" target="mainFrame">Buttons</a></li>
+                    <li><a href="modules/ui-element/tabs_accordions.html" target="mainFrame">Tabs & Accordions</a></li>
+                </ul>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:void 0;">
+                    <span class="icon-box"><i class="icon-fire"></i></span> Grid
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub">
+                    <li><a href="modules/grid/ng-grid-jqwidgets.html" target="mainFrame">ngJqwidgetsGrid</a></li>
+                    <li><a href="modules/grid/ng-grid-jqwidgets-add.html" target="mainFrame">ngJqwidgetsGrid AddRow</a></li>
+                    <li><a href="modules/grid/ng-grid-kendo.html" target="mainFrame">ngkendoGrid</a></li>
+                    <li><a href="modules/grid/angular-kendo-grid.html" target="mainFrame">AngularKendoGrid</a></li>
+                    <li><a href="modules/grid/grid-kendo.html" target="mainFrame">Kendo Grid</a></li>
+                    <li><a href="modules/grid/grid-jqwidgets-full.html" target="mainFrame">Grid jqwidgets CRUD</a></li>
+                    <li><a href="modules/grid/grid-jqwidgets-base.html" target="mainFrame">Grid jqwidgets Base </a></li>
+                </ul>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:void 0;">
+                    <span class="icon-box"><i class="icon-fire"></i></span> Icons
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub">
+                    <li><a href="modules/icon/font-awesome.html" target="mainFrame">Font Awesome</a></li>
+                    <li><a href="modules/icon/glyphicons.html" target="mainFrame">glyphicons</a></li>
+                </ul>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:void 0;">
+                    <span class="icon-box"><i class="icon-fire"></i></span> KendoUI
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub">
+                    <li><a href="../framework-kendoui/kendoui/examples/web/index.html" target="mainFrame">Index</a></li>
+                </ul>
+            </li>
+            <li><a href="login.html"><span class="icon-box"><i class="icon-user"></i></span> Login Page</a></li>
+        </ul>
+        <!-- END SIDEBAR MENU -->
+    </div>
+    <!-- END SIDEBAR -->
+
+    <!-- BEGIN PAGE -->
+    <div id="main-content">
+        <iframe id="mainFrame" name="mainFrame" src="modules/welcome/welcome.html" width="100%" height="600" style="border-width:0; " scrolling="no"></iframe>
+    </div>
+    <!-- END PAGE -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div id="footer">
+    2013 © LeadWit Lin.
+    <div class="span pull-right">
+        <span class="go-top"><i class="icon-arrow-up"></i></span>
+    </div>
+</div>
+<!-- END FOOTER -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="main-modal" tabindex="-1" role="dialog" aria-hidden="true" ng-controller="modalCtrl" style=" display:none; width:700px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 id="modal-title" class="modal-title">loading...</h4>
+            </div>
+            <div id="modal-body" class="modal-body">
+                <iframe id="modal-frame" name="modalFrame" src="about:blank" width="100%" height="600" style="border-width:0; " scrolling="no"></iframe>
+                <form target="modalFrame"><input type="hidden" name="data"/><input type="hidden" name="para"/></form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="modal-submit" ng-click="modalSubmit()">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- BEGIN JAVASCRIPTS -->
+<!-- Load javascripts at bottom, this will reduce page load time -->
+<script src="../framework/jquery/jquery-1.8.3.min.js"></script>
+<script src="../framework/angular/angular.min.js"></script>
+<script src="../framework/angular/angular-resource.min.js"></script>
+<script src="../framework/bootstrap/bootstrap.min.js"></script>
+<!-- ie8 fixes -->
+<!--[if lt IE 9]>
+<script src="../framework/ie/excanvas.min.js"></script>
+<script src="../framework/ie/respond.min.js"></script>
+<![endif]-->
+<script src="../framework/component/uniform/jquery.uniform.min.js"></script>
+
+<script src="script/app.js"></script>
+<script src="script/ui-compile.js"></script>
+<script src="../framework/framework.js"></script>
+<script src="../framework/main-controller.js"></script>
+<script src="script/modal-controller.js"></script>
+<!-- END JAVASCRIPTS -->
+
+
+<!-- END BODY -->
+</body>
+</html>
