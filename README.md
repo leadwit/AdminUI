@@ -1,5 +1,5 @@
 # AdminUI
-##AngularJS+KendoUI/jQWidgets+bootstrapUI+jQuery
+###AngularJS+KendoUI/jQWidgets+bootstrapUI+jQuery+LABjs
 
 
 # 特别注意！
